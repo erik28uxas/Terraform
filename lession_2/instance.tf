@@ -9,8 +9,8 @@ resource "aws_instance" "example" {
     key_name      = aws_key_pair.id_rsa.key_name
 
     provisioner "file" {
-      source      = "myscript11_echo.sh"
-      destination = "/home/erikgoul/Documents/bash_Scripts/myscript11_echo.sh "
+      source      = "/home/erikgoul/Documents/bash_Scripts/myscript11_echo.sh"
+      destination = "/tmp/myscript11_echo.sh"
     }
 
     provisioner "remote-exec" {
