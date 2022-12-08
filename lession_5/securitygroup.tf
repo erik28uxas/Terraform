@@ -8,7 +8,7 @@ resource "aws_security_group" "from_usa" {
     
     ingress {
         from_port   = "443"
-        to_port     = "433"
+        to_port     = "443"
         protocol    = "tcp"
         cidr_blocks = slice(data.aws_ip_ranges.usaean_ec2.cidr_blocks, 0, 50)
     }
