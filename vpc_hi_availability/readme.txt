@@ -1,0 +1,1 @@
+09 Dec 2022: I am creating my own high availiable VPC. OG file is "lession_7_vpc"
