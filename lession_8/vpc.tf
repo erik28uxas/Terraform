@@ -67,7 +67,7 @@ resource "aws_subnet" "main-private-2" {
     }
 }
 
-resource "aws_subnet" "main-private-1" {
+resource "aws_subnet" "main-private-3" {
     vpc_id                  = aws_vpc.main.id
     cidr_block              = "10.0.6.0/24"
     map_public_ip_on_launch = "false"
