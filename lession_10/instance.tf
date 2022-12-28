@@ -12,7 +12,7 @@ resource "aws_instance" "example" {
 }
 
 resource "aws_ebs_volume" "ebs-volume-1" {
-    availability_zone = aws_subnet.main-public-1.id
+    availability_zone = "us-west-2a"
     size              = 20
     type              = "gp2"
     
