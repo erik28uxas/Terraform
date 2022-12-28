@@ -11,7 +11,7 @@ if [ "`echo -n $DEVICE_FS`" == "" ] ; then
     DEVICEEXISTS=''
     while [[ -z $DEVICEEXISTS ]]; do
         echo "checking $DEVICENAME"
-        DEVICEEXISTS=`lsblk | grep "$DEVICENAME" | wc -l`
+        DEVICEEXISTS=`lsblk |grep "$DEVICENAME" |wc -l`
         if [[ $DEVICEEXISTS != "1" ]]; then
             sleep 15
         fi
