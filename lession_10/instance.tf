@@ -25,5 +25,5 @@ resource "aws_volume_attachment" "ebs-volume-1-attachment" {
     device_name       = var.INSTANCE_DEVICE_NAME
     volume_id         = aws_ebs_volume.ebs-volume-1.id
     instance_id       = aws_instance.example.id
-    skip_skip_destroy = true
+    skip_destroy      = true
 }
