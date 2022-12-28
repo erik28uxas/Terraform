@@ -9,7 +9,7 @@ if [ "`echo -n $DEVICE_FS`" == "" ] ; then
     # wait for the device to be attached
     DEVICENAME=`echo "${DEVICE}" | awk -F '/' '{print $3}'`
     DEVICEEXISTS=''
-    while [[ -z $DEVICEEXISTS]]; do
+    while [[ -z $DEVICEEXISTS ]]; do
         echo "checking $DEVICENAME"
         DEVICEEXISTS=`lsblk | grep "$DEVICENAME" | wc -l`
         if [[ $DEVICEEXISTS != "1" ]]; then
