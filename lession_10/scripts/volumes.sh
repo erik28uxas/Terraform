@@ -28,6 +28,6 @@ if [ "`echo -n $DEVICE_FS`" == "" ]; then
     lvcreate --name volume1 -l 100%FREE date
     mkfs.ext4 /dev/xvdh/volume1
 fi
-mkdir /home/ubuntu/data
+mkdir /data
 echo '/dev/xvdh/volume1 /data ext4 defaults 0 0 ' >> /etc/fstab
 mount /home/ubuntu/data
