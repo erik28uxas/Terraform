@@ -28,6 +28,21 @@ if [ "`echo -n $DEVICE_FS`" == "" ]; then
     lvcreate --name volume1 -l 100%FREE data
     mkfs.ext4 /dev/xvdh/volume1
 fi
-mkdir /home/ubuntu/data
-echo '/dev/xvdh/volume1 /data ext4 defaults 0 0 ' >> /etc/fstab
-gmount /home/ubuntu/data
+mkdir -p /hddata
+echo '/dev/xvdh/volume1 /hddata ext4 default 0 0 ' >> /etc/fstab
+mount /hddata
+
+echo "=====End of the code V1====="
+
+
+# vgchange -ay
+# DEVICE_FS=`blkid -o value -s Type ${DEVICE}`
+# if [ "`echo -n $DEVICE_FS`" == "" ] ; then
+#     pvcreate ${DEVICE}
+#     vgcreate data ${DEVICE}
+#     lvcreate --name volume1 -l 100%FREE data
+#     mkfs.ext4 /dev/data/volume1
+# fi
+# mkdir -p /data
+# echo '/dev/data/volume1 /data ext4 defaults 0 0' >> /etc/fstab
+# mount /data
