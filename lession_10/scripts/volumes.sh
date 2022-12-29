@@ -26,7 +26,7 @@ if [ "`echo -n $DEVICE_FS`" == "" ]; then
     pvcreate ${DEVICE}
     vgcreate date ${DEVICE}
     lvcreate --name volume1 -l 100%FREE date
-    mkfs.ext4 /dev/xvdh/volume1
+    mkfs.ext4 -f /dev/xvdh/volume1
 fi
 mkdir /home/ubuntu/data
 echo '/dev/xvdh/volume1 /data ext4 defaults 0 0 ' >> /etc/fstab
