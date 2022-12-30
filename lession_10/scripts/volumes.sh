@@ -25,12 +25,12 @@ if [ "`echo -n $DEVICE_FS`" == "" ]; then
     done
     pvcreate ${DEVICE}
     vgcreate date ${DEVICE}
-    lvcreate --name volume1 -l 100%FREE data
+    lvcreate -l 100%FREE data
     mkfs.ext4 /dev/xvdh
 fi
-mkdir -p /data
-echo '/dev/xvdh/volume1 /data/vol1 ext4 default 0 0 ' >> /etc/fstab
-mount /data
+mkdir -p /hdata
+echo '/dev/xvdh /hdata/vol1 ext4 default 0 0 ' >> /etc/fstab
+mount /hdata/vol1
 
 echo "=====End of the code V1====="
 
