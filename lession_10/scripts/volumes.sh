@@ -28,8 +28,8 @@ if [ "`echo -n $DEVICE_FS`" == "" ]; then
     lvcreate -l 100%FREE data
     mkfs.ext4 /dev/xvdh
 fi
-mkdir -p /hdata
-echo '/dev/xvdh /hdata/vol1 ext4 default 0 0 ' >> /etc/fstab
+mkdir /hdata
+echo '/dev/xvdh /hdata ext4 default 0 0 ' >> /etc/fstab
 mount /hdata/vol1
 
 echo "=====End of the code V1====="
