@@ -29,7 +29,7 @@ if [ "`echo -n $DEVICE_FS`" == "" ]; then
     mkfs.ext4 /dev/xvdh
 fi
 mkdir -p /data
-echo '/dev/xvdh/ /data ext4 default 0 0 ' >> /etc/fstab
+echo '/dev/xvdh/volume1 /data/vol1 ext4 default 0 0 ' >> /etc/fstab
 mount /data
 
 echo "=====End of the code V1====="
