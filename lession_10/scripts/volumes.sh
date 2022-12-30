@@ -25,7 +25,7 @@ if [ "`echo -n $DEVICE_FS`" == "" ]; then
     done
     pvcreate ${DEVICE}
     vgcreate date ${DEVICE}
-    lvcreate -l 100%FREE
+    lvcreate --name vol1 -l 100%FREE
     mkfs.ext4 /dev/xvdh
 fi
 mkdir /hdata
