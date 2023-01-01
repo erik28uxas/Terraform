@@ -24,6 +24,13 @@ ingress {
         cidr_blocks = ["108.214.21.213/32"]
     }
 
+ingress {
+        from_port   = 22
+        to_port     = 22
+        protocol    = "tcp"
+        cidr_blocks = ["155.186.125.162/32"]
+    }
+
     tags = {
       Name = "allow-ssh"
     }
