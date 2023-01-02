@@ -24,13 +24,17 @@ if [ "`echo -n $DEVICE_FS`" == "" ]; then
         count=$(expr $count + 1)
     done
     pvcreate ${DEVICE}
-    vgcreate date ${DEVICE}
-    lvcreate --name vol1 -l 100%FREE
+    pvs
+    vgcreate datas ${DEVICE}
+    pgs
+    lvcreate -l 100%FREE -n ndvol datas
+    pvs
     mkfs.ext4 /dev/xvdh
 fi
-mkdir /hdata
-echo '/dev/xvdh /hdata ext4 default 0 0' >> /etc/fstab
-mount /hdata/vol1
+mkdir /mnt
+echo '/dev/xvdh /mnt/ndvol ext4 default,nofail 0 0' >> /etc/fstab
+
+mount /mnt/ndvol
 
 echo "=====End of the code V1====="
 
