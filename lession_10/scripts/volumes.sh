@@ -31,6 +31,7 @@ if [ "`echo -n $DEVICE_FS`" == "" ]; then
     pvs
     mkfs.ext4 /dev/lvmhdds/hdd2
 fi
+
 mkdir -p /exthdd/hdd2
 echo "/dev/lvmhdds/hdd2 /exthdd/hdd2 ext4 defaults 0 0" >> /etc/fstab
 mount /dev/lvmhdds/hdd2 /exthdd/hdd2
