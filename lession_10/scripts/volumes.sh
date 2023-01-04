@@ -35,18 +35,4 @@ mkdir -p /exthdd/hdd2
 echo "/dev/lvmhdds/hdd2 /exthdd/hdd2 ext4 defaults 0 0" >> /etc/fstab
 mount /dev/lvmhdds/hdd2 /exthdd/hdd2
 
-
 echo "=====End of the code V1====="
-
-
-# vgchange -ay
-# DEVICE_FS=`blkid -o value -s Type ${DEVICE}`
-# if [ "`echo -n $DEVICE_FS`" == "" ] ; then
-#     pvcreate ${DEVICE}
-#     vgcreate data ${DEVICE}
-#     lvcreate --name volume1 -l 100%FREE data
-#     mkfs.ext4 /dev/data/volume1
-# fi
-# mkdir -p /data
-# echo '/dev/data/volume1 /data ext4 defaults 0 0' >> /etc/fstab
-# mount /data
