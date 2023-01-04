@@ -32,8 +32,8 @@ if [ "`echo -n $DEVICE_FS`" == "" ]; then
     mkfs.ext4 /dev/lvmhdds/hdd2
 fi
 mkdir -p /exthdd/hdd2
-mount /dev/lmvhdds/hdd2 /exthdd/hdd2
-echo "/dev/lmvhdds/hdd2 /exthdd/hdd2 ext4 default,nofail 0 0" >> /etc/fstab
+mount /dev/lvmhdds/hdd2 /exthdd/hdd2
+echo "/dev/lvmhdds/hdd2 /exthdd/hdd2 ext4 default,nofail 0 0" >> /etc/fstab
 
 echo "=====End of the code V1====="
 
