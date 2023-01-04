@@ -25,16 +25,15 @@ if [ "`echo -n $DEVICE_FS`" == "" ]; then
     done
     pvcreate ${DEVICE}
     pvs
-    vgcreate datas ${DEVICE}
-    pgs
-    lvcreate -l 100%FREE -n ndvol datas
+    vgcreate lvmhdds ${DEVICE}
     pvs
-    mkfs.ext4 /dev/xvdh
+    lvcreate -l 100%FREE -n hdd2 lvmhdds
+    pvs
+    mkfs.ext4 /dev/lvmhdds/hdd2
 fi
-mkdir /mnt
-echo '/dev/xvdh /mnt/ndvol ext4 default,nofail 0 0' >> /etc/fstab
-
-mount /mnt/ndvol
+mkdir -p /exthdd/hdd2
+mount /dev/lmvhdds/hdd2 /exthdd/hdd2
+echo "/dev/lmvhdds/hdd2 /exthdd/hdd2 ext4 default,nofail 0 0" >> /etc/fstab
 
 echo "=====End of the code V1====="
 
