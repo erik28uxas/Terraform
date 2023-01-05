@@ -18,5 +18,5 @@ variable "AMIS" {
 }
 
 variable "RDS_PASSWORD" {
-    default = "erik28@"
+    default = "mypassword28"
 }
