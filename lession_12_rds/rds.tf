@@ -19,7 +19,7 @@ resource "aws_db_instance" "mariadb" {
     allocated_storage       = 100
     engine                  = "mariadb"
     engine_version          = "10.6.10"
-    instance_class          = db.t3.micro
+    instance_class          = "db.t3.micro"
     identifier              = "mariadb"
     db_name                 = "mariadb"
     username                = "root"
