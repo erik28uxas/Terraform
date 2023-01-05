@@ -20,3 +20,4 @@ variable "AMIS" {
 variable "RDS_PASSWORD" {
     default = "mypassword28"
 }
+
