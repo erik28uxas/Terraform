@@ -20,3 +20,7 @@ variable "AMIS" {
 variable "INSTANCE_DEVICE_NAME" {
     default = "/dev/xvdh"
 }
+
+variable "IPS" {
+    default = ["172.117.124.247/32", "108.214.21.213/32", "155.186.125.162/32"]
+}
