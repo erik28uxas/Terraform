@@ -13,9 +13,9 @@ resource "aws_security_group" "allow_ssh" {
     dynamic "ingress" {
         for_each = ["172.117.124.247/32", "108.214.21.213/32", "155.186.125.162/32"]
         content {
-          from_port = 22
-          to_port = 22
-          protocol = "tcp"
+          from_port   = 22
+          to_port     = 22
+          protocol    = "tcp"
           cidr_blocks = ingress.value
         }
     }
