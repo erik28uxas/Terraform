@@ -1,5 +1,5 @@
 resource "aws_security_group" "instance" {
-    name = "sg-instance"
+    name = "security-group-for-instance"
 
     ingress {
         from_port   = var.server_port
