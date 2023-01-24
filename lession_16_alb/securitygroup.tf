@@ -13,6 +13,7 @@ resource "aws_security_group" "instance" {
 
 resource "aws_security_group" "alb" {
     name = "security-group-for-alb"
+    vpc_id = aws_vpc.main-vpc.id
 
     egress {
         from_port   = 0
