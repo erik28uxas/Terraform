@@ -5,9 +5,16 @@ resource "aws_launch_configuration" "example" {
 
     user_data = <<-EOF
                 #!/bin/bash
-                echo "Hello, World MF!" > index.xhtml
-                nohup busybox httpd -f -p ${var.server_port} &
+                yum update -y
+                yup install -y httpd
+                systemctl start httpd
+                systemctl enable httpd
+                echo "<h1>Hello, World MF! $(hostname)</h1>" >/var/www/html/index.html
                 EOF
+    
+    lifecycle {
+      create_before_destroy = true
+    }
 }
 
 resource "aws_autoscaling_group" "example" {
