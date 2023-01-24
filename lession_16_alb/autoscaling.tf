@@ -5,11 +5,11 @@ resource "aws_launch_configuration" "example" {
 
     user_data = <<-EOF
                 #!/bin/bash
-                yum update -y
-                yup install -y httpd
-                systemctl start httpd
-                systemctl enable httpd
-                echo "<h1>Hello, World MF! $(hostname)</h1>" >/var/www/html/index.html
+                sudo apt-get update -y
+                sudo apt-get install -y apache2
+                sudo systemctl start apache2
+                sudo systemctl enable apache2
+                echo "<h1>Hello, World from $(hostname)</h1>" > /var/www/html/index.html
                 EOF
     
     lifecycle {
@@ -27,7 +27,7 @@ resource "aws_autoscaling_group" "example" {
     
     tag {
         key                 = "Name"
-        value               = "terraform-asg-example"
+        value               = "terraform-asg-instance"
         propagate_at_launch = true
     }
 }

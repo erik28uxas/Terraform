@@ -1,5 +1,5 @@
 resource "aws_lb" "example" {
-    name               = "terraform-asg-xample"
+    name               = "terraform-lb-xample"
     load_balancer_type = "application"
     subnets            = [aws_subnet.public-main-1.id, aws_subnet.public-main-2.id]
     security_groups    = [aws_security_group.alb.id] 
@@ -22,13 +22,13 @@ resource "aws_lb_listener" "http" {
 }
 
 resource "aws_lb_target_group" "asg" {
-    name     = "terraform-asg-xample"
+    name     = "terraform-lb-from-asg-xample"
     port     = var.server_port
     protocol = "HTTP"
     vpc_id   = aws_vpc.main-vpc.id
 
     health_check {
-      path                = "/"
+      path                = "/var/www/html/index.html"
       protocol            = "HTTP"
       matcher             = "200"
       interval            = 15

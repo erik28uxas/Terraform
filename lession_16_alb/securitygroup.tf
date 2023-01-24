@@ -3,16 +3,16 @@ resource "aws_security_group" "instance" {
     vpc_id = aws_vpc.main-vpc.id
 
     egress {
-        from_port =var.server_port 
-        to_port = var.server_port
-        protocol = "tcp"
-        security_groups = [aws_security_group.alb.id]
+        from_port   = var.server_port 
+        to_port     = var.server_port
+        protocol    = "tcp"
+        cidr_blocks = ["0.0.0.0/0"]
     }
     
     ingress {
-        from_port   = var.server_port
-        to_port     = var.server_port
-        protocol    = "tcp"
+        from_port       = var.server_port
+        to_port         = var.server_port
+        protocol        = "tcp"
         security_groups = [aws_security_group.alb.id]
     }
 
@@ -23,7 +23,16 @@ resource "aws_security_group" "instance" {
         cidr_blocks = [ "0.0.0.0/0" ]
     }
 
-    
+    ingress {
+        from_port   = 22
+        to_port     = 22
+        protocol    = "tcp"
+        cidr_blocks = [ "0.0.0.0/0" ]
+    }
+
+    tags = {
+      Name = "instance-in-asg-sg-group"
+    }
     
 }
 
@@ -44,6 +53,10 @@ resource "aws_security_group" "alb" {
         to_port     = 80
         protocol    = "tcp"
         cidr_blocks = ["0.0.0.0/0"]
-    }   
+    }  
+
+    tags = {
+      Name = "alb-security-group"
+    } 
 }
 
