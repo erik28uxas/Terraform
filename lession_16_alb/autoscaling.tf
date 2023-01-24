@@ -1,6 +1,7 @@
 resource "aws_launch_configuration" "example" {
-    image_id = var.AMIS[var.AWS_REGION]
-    instance_type = "t2.micro"
+    image_id        = var.AMIS[var.AWS_REGION]
+    instance_type   = "t2.micro"
+    key_name        = aws_key_pair.id_rsa.key_name
     security_groups = [aws_security_group.instance.id]  
 
     user_data = <<-EOF
