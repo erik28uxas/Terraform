@@ -13,8 +13,9 @@ variable "PATH_TO_PUBLIC_KEY" {
 variable "AMIS" {
     type    = map(string)
     default = {
-        us-west-2 = "ami-0688ba7eeeeefe3cd"
-        us-west-1 = "ami-0454207e5367abf01"
+        # us-west-2 = "ami-0688ba7eeeeefe3cd"
+        us-west-2 = "ami-0ceecbb0f30a902a6"
+
     }
 }
 
