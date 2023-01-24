@@ -3,11 +3,12 @@ resource "aws_security_group" "instance" {
     vpc_id = aws_vpc.main-vpc.id
 
     ingress {
-        from_port   = var.server_port
-        to_port     = var.server_port
+        from_port   = 80
+        to_port     = 80
         protocol    = "tcp"
-        cidr_blocks = ["0.0.0.0/0"]
-    }  
+        security_groups = [aws_security_group.alb.id]
+    }
+    
 }
 
 
