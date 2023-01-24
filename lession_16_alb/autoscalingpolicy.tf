@@ -17,7 +17,7 @@ resource "aws_cloudwatch_metric_alarm" "example-cpu-alarm" {
   namespace           = "AWS/EC2"
   period              = "120"
   statistic           = "Average"
-  threshold           = "30"
+  threshold           = "70"
 
   dimensions = {
     "AutoScalingGroupName" = aws_autoscaling_group.example.name
@@ -47,7 +47,7 @@ resource "aws_cloudwatch_metric_alarm" "example-cpu-alarm-scaledown" {
   namespace           = "AWS/EC2"
   period              = "120"
   statistic           = "Average"
-  threshold           = "5"
+  threshold           = "70"
 
   dimensions = {
     "AutoScalingGroupName" = aws_autoscaling_group.example.name
