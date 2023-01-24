@@ -10,7 +10,6 @@ resource "aws_launch_configuration" "example" {
                 EOF
 }
 
-
 resource "aws_autoscaling_group" "example" {
     launch_configuration = aws_launch_configuration.example.name
     vpc_zone_identifier  = [aws_subnet.public-main-1.id, aws_subnet.public-main-2.id]
