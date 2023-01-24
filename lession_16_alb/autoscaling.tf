@@ -6,11 +6,11 @@ resource "aws_launch_configuration" "example" {
 
     user_data = <<-EOF
                 #!/bin/bash
-                sudo yum update -y
-                sudo yum install -y httpd
-                sudo systemctl start httpd
-                sudo systemctl enable httpd
-                echo "<h1>Hello, World MF! $(hostname)</h1>" > /var/www/html/index.html
+                yum update -y
+                yum install -y httpd
+                systemctl start httpd
+                systemctl enable httpd
+                echo "<h1>Greetings from $(hostname -f)</h1>" > /var/www/html/index.html
                 EOF
     
     lifecycle {
