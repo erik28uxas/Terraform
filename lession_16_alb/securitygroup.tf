@@ -1,5 +1,6 @@
 resource "aws_security_group" "instance" {
     name = "security-group-for-instance"
+    vpc_id = aws_vpc.main-vpc.id
 
     ingress {
         from_port   = var.server_port
