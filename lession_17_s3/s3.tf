@@ -2,7 +2,7 @@ resource "aws_s3_bucket" "bucket-tf-state" {
     bucket = "bucket-for-tf-state-from-erik-ubuntu"
 
     lifecycle {
-      prevent_destroy = true
+      prevent_destroy = false
     }
 }
 
