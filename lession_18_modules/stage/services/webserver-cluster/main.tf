@@ -6,8 +6,8 @@ module "webserver_cluster" {
     source = "~/Documents/Terraform/lession_18_modules/modules/services/webserver-cluster"
 
     cluster_name           = "webservers-stage"
-    db_remote_state_bucket = " " 
-    db_remote_state_key    = " "
+    # db_remote_state_bucket = " " 
+    # db_remote_state_key    = " "
 
     instancee_type = "t1.micro"
     min_size       = 1
