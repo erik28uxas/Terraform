@@ -1,5 +1,5 @@
 resource "aws_dynamodb_table" "tf-locks" {
-    name         = "dynamodb-locks"
+    name         = var.table_name
     billing_mode = "PAY_PER_REQUEST"
     hash_key     = "LockID"
 
