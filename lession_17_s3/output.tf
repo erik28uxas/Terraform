@@ -7,3 +7,4 @@ output "dynamodb_tabl_name" {
     value = aws_dynamodb_table.tf-locks.name
     description = "The NAMEe of DynamoDB Table"
 }
+

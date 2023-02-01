@@ -8,3 +8,4 @@ resource "aws_dynamodb_table" "tf-locks" {
       type = "S"
     }
 }
+
