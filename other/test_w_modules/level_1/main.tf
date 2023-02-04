@@ -40,14 +40,14 @@ resource "aws_s3_bucket_public_access_block" "public-access" {
 
 
 
-# terraform {
-#   backend "s3" {
-#     bucket = "bucket-for-tf-state-from-erik-ubuntu-test"
-#     key    = "dev/network/terraform.tfstate"
-#     region = "us-west-2"
+terraform {
+  backend "s3" {
+    bucket = "bucket-for-tf-state-from-erik-ubuntu-test"
+    key    = "dev/network/terraform.tfstate"
+    region = "us-west-2"
     
-#   }
-# }
+  }
+}
 
 
 resource "aws_vpc" "test" {
