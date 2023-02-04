@@ -6,7 +6,7 @@ variable "vpc_cidr" {
     default = "10.0.0.0/16"  
 }
 
-esource "aws_s3_bucket" "bucket-tf-state" {
+resource "aws_s3_bucket" "bucket-tf-state" {
     bucket = "bucket-for-tf-state-from-erik-ubuntu"
     force_destroy = true
     
