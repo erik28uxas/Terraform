@@ -3,7 +3,7 @@ provider "aws" {
 }
 
 module "webserver_cluster" {
-    source = "~/Documents/Terraform/lession_18_modules/modules/services/webserver-cluster"
+    source = "/home/erikgoul/Documents/Terraform/lession_18_modules/modules/services/webserver-cluster"
 
     cluster_name           = "webservers-stage"
     # db_remote_state_bucket = " " 
