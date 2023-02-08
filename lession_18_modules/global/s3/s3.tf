@@ -10,7 +10,7 @@ resource "aws_s3_bucket" "bucket-tf-state" {
 resource "aws_s3_bucket_versioning" "enable" {
     bucket = aws_s3_bucket.bucket-tf-state.id
     versioning_configuration {
-        status = "Diabled"
+        status = "Disabled"
     }
 }
 
