@@ -5,8 +5,8 @@ data "aws_vpc" "default" {
 data "aws_subnets" "default" {
   filter {
     name   = "vpc-id"
-    values = [data.aws_vpc.default.id]
-    # values = [ "us-west-2a", "us-west-2b", "us-west-2c" ]
+    # values = [data.aws_vpc.default.id]
+    values = [ "us-west-2a", "us-west-2b", "us-west-2c" ]
   }
 }
 
