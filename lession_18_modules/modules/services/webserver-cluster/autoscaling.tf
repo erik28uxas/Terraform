@@ -3,7 +3,7 @@ resource "aws_launch_configuration" "example" {
     instance_type   = var.instance_type
     key_name        = aws_key_pair.id_rsa.key_name
     security_groups = [aws_security_group.instance.id]
-    user_data       = "${file("user-data.sh")}"
+    user_data       = "${file("/home/erikgoul/Documents/Terraform/lession_18_modules/modules/services/webserver-cluster/user-data.sh")}"
     
     lifecycle {
       create_before_destroy = true
