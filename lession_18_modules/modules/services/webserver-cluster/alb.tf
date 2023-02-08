@@ -1,7 +1,8 @@
 resource "aws_lb" "example" {
     name               = var.cluster_name
     load_balancer_type = "application"
-    subnets            = data.aws_subnets.default.id
+    # subnets            = data.aws_subnets.default.id
+    subnets            = ["us-west-2a", "us-west-2b", "us-west-2c"]
     security_groups    = [aws_security_group.alb.id] 
 }
 
