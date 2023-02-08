@@ -1,11 +1,10 @@
 resource "aws_s3_bucket" "bucket-tf-state" {
     bucket = var.bucket_name
     force_destroy = true
-    
+
     lifecycle {
       prevent_destroy = false
     }
-    
 }
 
 resource "aws_s3_bucket_versioning" "enable" {

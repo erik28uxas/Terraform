@@ -8,8 +8,8 @@ variable "bucket_name" {
     default     = "bucket-for-tf-state-from-erik-ubuntu"
 }
 
-variable "table_name" {
-    description = "The name of DynamoDB Table"
-    type        = string
-    default     = "dynamodb-locks"
-}
+# variable "table_name" {
+#     description = "The name of DynamoDB Table"
+#     type        = string
+#     default     = "dynamodb-locks"
+# }
