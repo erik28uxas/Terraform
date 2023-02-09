@@ -3,7 +3,7 @@ resource "aws_security_group" "allow_ssh" {
     description = "SG that allows ssh and all egress traffic"
     
     dynamic "ingress" {
-        for_each = [ "22", "80", "443", "8080", "3350" ]
+        for_each = lookup(var.ip_ranges, var.env)
         content {
             from_port   = ingress.value
             to_port     = ingress.value
@@ -11,27 +11,6 @@ resource "aws_security_group" "allow_ssh" {
             cidr_blocks = ["172.117.124.247/32"]
         }
     }
-
-    # ingress {
-    #     from_port   = 22
-    #     to_port     = 22
-    #     protocol    = "tcp"
-    #     cidr_blocks = ["172.117.124.247/32"]
-    # }
-
-    # ingress {
-    #     from_port   = 22
-    #     to_port     = 22
-    #     protocol    = "tcp"
-    #     cidr_blocks = ["108.214.21.213/32"]
-    # }
-
-    # ingress {
-    #     from_port   = 22
-    #     to_port     = 22
-    #     protocol    = "tcp"
-    #     cidr_blocks = ["155.186.125.162/32"]
-    # }
     
     egress {
         from_port   = 0
@@ -43,4 +22,17 @@ resource "aws_security_group" "allow_ssh" {
     tags = {
         Name = "allow-ssh"
     }
+}
+
+# ===== Vars =====
+
+variable "env" {
+    default = "dev"
+}
+
+variable "ip_ranges" {
+    default = {
+        "prod" = ["80", "443"]
+        "dev"  = ["80", "22"]
+    }  
 }
