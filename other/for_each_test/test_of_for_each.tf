@@ -1,5 +1,5 @@
 resource "aws_security_group" "allow_ssh" {
-    name        = "Dynamic SSH"
+    name        = "${var.env}-ssg"
     description = "SG that allows ssh and all egress traffic"
     
     dynamic "ingress" {
