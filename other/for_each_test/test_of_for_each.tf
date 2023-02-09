@@ -20,7 +20,7 @@ resource "aws_security_group" "allow_ssh" {
     }
     
     tags = {
-      Name = "Sg w/prots ${(var.env == "dev" ? var.custom_tags[dev] : var.custom_tags[prod])}"
+      Name = "Sg w/prots ${(var.env == "dev" ? var.custom_tags["dev"] : var.custom_tags["prod"])}"
     }
 }
 
