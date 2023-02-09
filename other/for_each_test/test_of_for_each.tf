@@ -20,7 +20,7 @@ resource "aws_security_group" "allow_ssh" {
     }
     
     tags = {
-      Name = "Sg with ports ${var.custom_tags,}"
+      Name = "Sg with ports ${var.custom_tags}"
     }
     
 }
