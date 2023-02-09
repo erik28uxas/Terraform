@@ -27,7 +27,7 @@ resource "aws_security_group" "dynimic" {
 # ===== Vars =====
 
 variable "env" {
-    default = "dev"
+    default = "prod"
 }
 
 variable "ip_ranges" {
