@@ -41,5 +41,5 @@ variable "ip_ranges" {
 variable "custom_tags" {
     description = "Custom, Dynomic tags for SG"
     type        = map(string)
-    default     = lookup(var.ip_ranges, var.env)
+    default     = { }
 }
