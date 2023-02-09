@@ -1,5 +1,5 @@
 resource "aws_security_group" "allow_ssh" {
-    name        = "${var.env}-ssg"
+    name        = "${var.env}-sg"
     description = "SG that allows ssh and all egress traffic"
     
     dynamic "ingress" {
@@ -20,8 +20,9 @@ resource "aws_security_group" "allow_ssh" {
     }
     
     tags = {
-        Name = "allow-ssh"
+      Name = "Sg with ports ${var.custom_tags}"
     }
+    
 }
 
 # ===== Vars =====
@@ -35,4 +36,10 @@ variable "ip_ranges" {
         "prod" = ["80", "443"]
         "dev"  = ["80", "22"]
     }  
+}
+
+variable "custom_tags" {
+    description = "Custom, Dynomic tags for SG"
+    type        = map(string)
+    default     = lookup(var.ip_ranges, var.env)
 }
