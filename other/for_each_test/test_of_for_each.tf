@@ -40,7 +40,7 @@ variable "ip_ranges" {
 
 variable "custom_tags" {
     description = "Custom, Dynomic tags for SG"
-    type        = map(string)
+    type        = list(string)
     default     = {
         "prod" = ["80", "443"]
         "dev"  = ["80", "22"] 
