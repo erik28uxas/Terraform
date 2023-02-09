@@ -20,7 +20,7 @@ resource "aws_security_group" "allow_ssh" {
     }
     
     tags = {
-      Name = "Sg with ports ${var.custom_tags}"
+      Name = "Sg with ports ${var.custom_tags,}"
     }
     
 }
@@ -41,5 +41,8 @@ variable "ip_ranges" {
 variable "custom_tags" {
     description = "Custom, Dynomic tags for SG"
     type        = map(string)
-    default     = { }
+    default     = { 
+        "prod" = ["80", "443"]
+        "dev"  = ["80", "22"]
+    }
 }
