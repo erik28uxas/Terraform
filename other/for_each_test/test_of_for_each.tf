@@ -1,6 +1,6 @@
-resource "aws_security_group" "allow_ssh" {
+resource "aws_security_group" "dynimic" {
     name        = "${var.env}-sg"
-    description = "SG that allows ssh and all egress traffic"
+    description = "Sg for ${var.env} with ingress prots ${(var.env == "dev" ? var.custom_tags["dev"] : var.custom_tags["prod"])}"
     
     dynamic "ingress" {
         for_each = lookup(var.ip_ranges, var.env)
@@ -20,7 +20,7 @@ resource "aws_security_group" "allow_ssh" {
     }
     
     tags = {
-      Name = "Sg for ${var.env} w/prots ${(var.env == "dev" ? var.custom_tags["dev"] : var.custom_tags["prod"])}"
+      Name = "Sg for ${var.env}"
     }
 }
 
