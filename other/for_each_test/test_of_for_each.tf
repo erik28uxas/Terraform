@@ -31,6 +31,7 @@ variable "env" {
 }
 
 variable "ip_ranges" {
+    type = map(string)
     default = {
         "prod" = ["80", "443"]
         "dev"  = ["80", "22"]
@@ -41,7 +42,7 @@ variable "custom_tags" {
     description = "Custom, Dynomic tags for SG"
     type        = map(string)
     default     = {
-        prod = "80, 443",
-        dev  = "80, 22"
+        "prod" = "80, 443",
+        "dev"  = "80, 22"
     }
 }
