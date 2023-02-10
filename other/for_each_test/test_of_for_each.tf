@@ -31,7 +31,6 @@ variable "env" {
 }
 
 variable "ip_ranges" {
-    type = string
     default = {
         "prod" = ["80", "443"]
         "dev"  = ["80", "22"]
