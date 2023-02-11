@@ -4,8 +4,8 @@ variable "legends_1" {
     default = ["Loba", "Valk", "Ash"]
 }
 
-output "Lagend_names_upper" {
-    value = [for name in var.legends_1 : upper(name) if length(name) < 4]  
+output "Legend_names_upper" {
+    value = [for name in var.legends_1 : upper(name) if length(name) > 4]  
 }
 
 variable "legends_2" {
@@ -18,6 +18,6 @@ variable "legends_2" {
     }
 }
 
-output "Lagend_ultimates" {
+output "Legend_ultimates" {
     value = [for name, specs in var.legends_2 : "${name} has ${specs}"]  
 }
