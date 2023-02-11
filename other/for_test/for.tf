@@ -31,11 +31,11 @@ output "Legend_ultimates_map" {
 variable "legends_3" {
     description = "Names of legends"
     type = list(string)
-    default = {
-        "Loba" = "black market"
-        "Valk" = "jet pack" 
-        "Ash"  = "steel sword"
-    }
+    default = [
+        "Loba", "black market",
+        "Valk", "jet pack",
+        "Ash", "steel sword"
+    ]
 }
 
 output "Legend_ultimates_list_2" {
