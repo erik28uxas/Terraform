@@ -12,9 +12,9 @@ variable "legends_2" {
     description = "Names of legends"
     type = map(string)
     default = {
-        Loba = "black market"
-        Valk = "jet pack" 
-        Ash  = "steel sword"
+        "Loba" = "black market"
+        "Valk" = "jet pack" 
+        "Ash"  = "steel sword"
     }
 }
 
