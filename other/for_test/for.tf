@@ -24,5 +24,5 @@ output "Legend_ultimates_list" {
 
 output "Legend_ultimates_map" {
     description = "Outputing from Map 'legends_2' to Map"
-    value = {for name, ult in var.legends_2 : upper(name) => uppre(ult)}
+    value = {for name, ult in var.legends_2 : upper(name) => upper(ult)}
 }
