@@ -5,5 +5,5 @@ variable "legends" {
 }
 
 output "Lagend_names_upper" {
-    value = [for name in var.legends : upper(name)]  
+    value = [for name in var.legends : upper(name) if length(name) < 3]  
 }
