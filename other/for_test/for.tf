@@ -4,8 +4,8 @@ variable "legends_1" {
     default = ["Loba", "Valk", "Ash"]
 }
 
-output "Legend_names_upper" {
-    value = [for name in var.legends_1 : upper(name) if length(name) > 3]  
+output "Legend_names_upper_list" {
+    value = [for name in var.legends_1 : upper(name) if length(name) > 2]  
 }
 
 variable "legends_2" {
@@ -18,6 +18,11 @@ variable "legends_2" {
     }
 }
 
-output "Legend_ultimates" {
-    value = [for name, specs in var.legends_2 : "${name} has ${specs}"]  
+output "Legend_ultimates_list" {
+    value = [for name, ult in var.legends_2 : "${name} has ${ult}"]  
+}
+
+output "Legend_ultimates_map" {
+    description = "Outputing from Map ${var.legens2} to Map"
+    value = {for name, ult in var.legends_2 : upper(name) => uppre(ult)}
 }
