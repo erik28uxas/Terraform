@@ -40,5 +40,5 @@ variable "legends_3" {
 
 output "Legend_ultimates_list_2" {
     description = "Outputing from list 'legends_3' to Map"
-    value = {for name, ult in var.legends_3 : upper(name) => upper(ult)}
+    value = {for name in var.legends_3 : upper(name) => upper(ult)}
 }
