@@ -1,9 +1,23 @@
-variable "legends" {
+variable "legends_1" {
     description = "Names of legends"
     type = list(string)
     default = ["Loba", "Valk", "Ash"]
 }
 
 output "Lagend_names_upper" {
-    value = [for name in var.legends : upper(name) if length(name) < 4]  
+    value = [for name in var.legends_1 : upper(name) if length(name) < 4]  
+}
+
+variable "legends_2" {
+    description = "Names of legends"
+    type = map(string)
+    default = {
+        Loba = "black market"
+        Valk = "jet pack" 
+        Ash  = "steel sword"
+    }
+}
+
+output "Lagend_ultimates" {
+    value = [for name, specs in var.legends_2 : "${name} has ${specs}"]  
 }
