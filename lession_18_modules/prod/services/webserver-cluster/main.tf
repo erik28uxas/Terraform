@@ -31,4 +31,3 @@ module "webserver_cluster" {
     max_size           = 10
     enable_autoscaling = true
 }
-
