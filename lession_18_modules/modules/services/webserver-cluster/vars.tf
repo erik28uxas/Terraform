@@ -32,6 +32,11 @@ variable "instance_type" {
     type        = string
 }
 
+variable "enable_autoscaling" {
+    description = "Enabling autoscaling based on count parameter"
+    type        = bool
+}
+
 variable "min_size" {
     description = "The minimum number of EC2 in ASG"
     type        = number
