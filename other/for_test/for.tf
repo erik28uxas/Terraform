@@ -44,10 +44,6 @@ output "Legend_ultimates_list_2" {
 }
 
 
-output "split" {
-    value = "======================================="
-}
-
 variable "legends_4" {
     description = "Names of legends"
     type = list(string)

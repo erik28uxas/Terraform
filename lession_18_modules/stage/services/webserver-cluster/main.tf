@@ -9,9 +9,10 @@ module "webserver_cluster" {
     # db_remote_state_bucket = " " 
     # db_remote_state_key    = " "
 
-    instancee_type = "t1.micro"
-    min_size       = 1
-    max_size       = 2
+    instancee_type     = "t1.micro"
+    min_size           = 1
+    max_size           = 2
+    enable_autoscaling = true
 }
 
 resource "aws_security_group_rule" "some_test_inbound" {

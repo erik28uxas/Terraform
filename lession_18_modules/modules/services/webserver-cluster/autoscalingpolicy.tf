@@ -1,5 +1,6 @@
 # scale up alarm
 resource "aws_autoscaling_policy" "example-cpu-policy" {
+  count                  = var.enable_autoscaling ? 1 : 0 
   name                   = "example-cpu-policy"
   autoscaling_group_name = aws_autoscaling_group.example.name
   adjustment_type        = "ChangeInCapacity"
@@ -30,6 +31,7 @@ resource "aws_cloudwatch_metric_alarm" "example-cpu-alarm" {
 
 # scale down alarm
 resource "aws_autoscaling_policy" "example-cpu-policy-scaledown" {
+  count                  = var.enable_autoscaling ? 1 : 0
   name                   = "example-cpu-policy-scaledown"
   autoscaling_group_name = aws_autoscaling_group.example.name
   adjustment_type        = "ChangeInCapacity"

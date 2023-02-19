@@ -26,8 +26,9 @@ module "webserver_cluster" {
     db_remote_state_bucket = "bucket-for-tf-state-from-erik-ubuntu"
     # db_remote_state_key    = "prod/services/webserver-cluster/terraform.tfstate"
 
-    instance_type = "t2.micro"
-    min_size      = 2
-    max_size      = 10
+    instance_type      = "t2.micro"
+    min_size           = 2
+    max_size           = 10
+    enable_autoscaling = true
 }
 
