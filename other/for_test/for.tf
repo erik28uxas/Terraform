@@ -32,13 +32,28 @@ variable "legends_3" {
     description = "Names of legends"
     type = list(string)
     default = [
-        "Loba", "black market",
-        "Valk", "jet pack",
-        "Ash", "steel sword"
+        "Loba", 
+        "Valk",
+        "Ash"
     ]
 }
 
 output "Legend_ultimates_list_2" {
     description = "Outputing from list 'legends_3' to Map"
     value = {for name in var.legends_3 : name => upper(name)}
+}
+
+
+output "split" {
+    value = "======================================="
+}
+
+variable "legends_4" {
+    description = "Names of legends"
+    type = list(string)
+    default = ["Octane", "Gybby", "Revenant"]
+}
+
+output "for_string_mode" {
+    value = "%{for name in var.legends_4}${name}, %{endfor} "
 }
