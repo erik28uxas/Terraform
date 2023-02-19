@@ -57,3 +57,4 @@ output "for_string_mode" {
         %{~ endfor ~}
 EOF
 }
+
