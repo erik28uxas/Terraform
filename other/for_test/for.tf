@@ -47,7 +47,11 @@ output "Legend_ultimates_list_2" {
 variable "legends_4" {
     description = "Names of legends"
     type = list(string)
-    default = ["Octane", "Gybby", "Revenant"]
+    default = [
+        "Octane", 
+        "Gybby", 
+        "Revenant"
+    ]
 }
 
 output "for_string_mode" {
