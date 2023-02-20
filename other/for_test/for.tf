@@ -55,10 +55,7 @@ variable "legends_4" {
 }
 
 output "for_string_mode" {
-    value = <<EOF
-    %{~ for i, name in var.legends_4 ~}
-        ${name}%{ if i < length(var.legends_4) - 1 },%{ else }.%{ endif }
-        %{~ endfor ~}
-EOF
+    value = "%{~ for i, name in var.legends_4 ~} ${name}%{ if i < length(var.legends_4) - 1 },%{ else }.%{ endif } %{~ endfor ~}"
+
 }
 
