@@ -13,16 +13,10 @@ resource "aws_iam_role" "s3-mybucket-role" {
           "Sid": ""
         }
     ]
-  }
+}
 EOF
-
 }
 
-
-resource "aws_iam_instance_profile" "s3-mybucket-role-instanceprofile" {
-    name = "s3-mybucket-2827-e-role"
-    role = aws_iam_role.s3-mybucket-role.name  
-}
 
 resource "aws_iam_role_policy" "s3-mybucket-role-policy" {
     name = "s3-mybucket-2827-e-role-policy"
@@ -44,5 +38,10 @@ resource "aws_iam_role_policy" "s3-mybucket-role-policy" {
     ]
 }
 EOF
+}
 
+
+resource "aws_iam_instance_profile" "s3-mybucket-role-instanceprofile" {
+    name = "s3-mybucket-2827-e-role"
+    role = aws_iam_role.s3-mybucket-role.name  
 }
