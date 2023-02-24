@@ -8,6 +8,7 @@ terraform {
 }
 
 
+
 resource "aws_db_instance" "mysql_db" {
     identifier_prefix   = "MySQL-DB"
     allocated_storage   = 10
