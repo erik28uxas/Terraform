@@ -1,12 +1,12 @@
-output "region_1" {
-    value       = data.aws_region.region_1.name
-    description = "The name of 1st region"
-}
+# output "region_1" {
+#     value       = data.aws_region.region_1.name
+#     description = "The name of 1st region"
+# }
 
-output "region_2" {
-    value       = data.aws_region.region_2.name
-    description = "The name of 2nd region"
-}
+# output "region_2" {
+#     value       = data.aws_region.region_2.name
+#     description = "The name of 2nd region"
+# }
 
 
 
