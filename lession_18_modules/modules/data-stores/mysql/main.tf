@@ -7,10 +7,6 @@ terraform {
     }
 }
 
-provider "aws" {
-    region = "us-west-2"
-}
-
 
 resource "aws_db_instance" "mysql_db" {
     identifier_prefix   = "MySQL-DB"
