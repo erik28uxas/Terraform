@@ -1,4 +1,11 @@
-
+terraform {
+  required_providers {
+    aws = {
+        ssource = "hashicorp/aws"
+        version = "~> 4.0"
+    }
+  }
+}
 
 
 provider "aws" {
