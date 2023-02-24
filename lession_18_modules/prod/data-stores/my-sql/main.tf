@@ -1,14 +1,3 @@
-provider "aws" {
-    region = "us-west-2"
-    alias  = "primary"
-}
-
-provider "aws" {
-    region = "us-east-1"
-    alias  = "replica"
-}
-
-
 module "mysql_db" {
     source = "/home/erikgoul/Documents/Terraform/lession_18_modules/modules/data-stores/mysql"
     

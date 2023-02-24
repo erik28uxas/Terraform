@@ -9,7 +9,14 @@ terraform {
 
 provider "aws" {
     region = "us-west-2"
+    alias  = "primary"
 }
+
+provider "aws" {
+    region = "us-east-1"
+    alias  = "replica"
+}
+
 
 resource "aws_db_instance" "mysql_db" {
     identifier_prefix   = "MySQL-DB"
