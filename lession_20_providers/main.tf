@@ -19,13 +19,13 @@ provider "aws" {
 }
 
 
-data "aws_region" "region_1" {
-    provider = aws.region_1
-}
+# data "aws_region" "region_1" {
+#     provider = aws.region_1
+# }
 
-data "aws_region" "region_2" {
-    provider = aws.region_2
-}
+# data "aws_region" "region_2" {
+#     provider = aws.region_2
+# }
 
 
 data "aws_ami" "latest_amazon_ami_in_region_1" {
