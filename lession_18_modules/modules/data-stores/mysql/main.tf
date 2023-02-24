@@ -1,3 +1,13 @@
+terraform {
+  required_providers {
+    aws = {
+        ssource = "hashicorp/aws"
+        version = "~> 4.0"
+    }
+  }
+}
+
+
 resource "aws_db_instance" "mysql_db" {
     identifier_prefix   = "MySQL-DB"
     allocated_storage   = 10
