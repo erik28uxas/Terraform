@@ -21,7 +21,9 @@ provider "aws" {
 module "mysql_db_prod" {
     source = "/home/erikgoul/Documents/Terraform/lession_18_modules/modules/data-stores/mysql"
     
-    provider = aws.primary
+    providers = {
+        aws = aws.primary
+     }
 
     db_name        = "prod_db"
     instance_class = "db.t2.micro"
