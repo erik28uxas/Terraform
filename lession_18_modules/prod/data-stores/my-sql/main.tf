@@ -23,9 +23,12 @@ module "mysql_db_prod" {
     
     provider = aws.primary
 
-    db_name     = "prod_db"
+    db_name        = "prod_db"
+    instance_class = "db.t1.micro"
+
     db_username = var.db_username
     db_password = var.db_password
+    
 
     backup_retention_period = 1
 }
