@@ -27,7 +27,7 @@ module "mysql_replica" {
     
     providers = {
       aws = aws.replica
-     }
+    }
 
     replicate_source_db = module.mysql_db.arn
 }
