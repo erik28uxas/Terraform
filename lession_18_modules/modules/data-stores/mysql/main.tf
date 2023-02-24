@@ -1,13 +1,3 @@
-# terraform {
-#     required_providers {
-#         aws = {
-#             source = "hashicorp/aws"
-#             version = "~> 4.0"
-#         }
-#     }
-# }
-
-
 resource "aws_db_instance" "mysql_db" {
     identifier_prefix   = "MySQL-DB"
     allocated_storage   = 10
@@ -26,5 +16,4 @@ resource "aws_db_instance" "mysql_db" {
     # tags = {
     #   Name = "MySql-DB_main"
     # }
-
 }

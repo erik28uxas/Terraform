@@ -17,7 +17,7 @@ provider "aws" {
     alias  = "replica"
 }
 
-module "mysql_db" {
+module "mysql_db_prod" {
     source = "/home/erikgoul/Documents/Terraform/lession_18_modules/modules/data-stores/mysql"
     
     providers = {
@@ -38,5 +38,5 @@ module "mysql_replica" {
       aws = aws.replica
     }
 
-    replicate_source_db = module.mysql_db.arn
+    replicate_source_db = module.mysql_db_prod.arn
 }
