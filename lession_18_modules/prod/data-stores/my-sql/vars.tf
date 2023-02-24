@@ -10,8 +10,8 @@ variable "db_password" {
     sensitive   = true
 }
 
-variable "db_instance_type" {
-    description = "The type of DB Instance size "
-    type        = string
-    default     = "db.t2.micro"
-}
+# variable "db_instance_type" {
+#     description = "The type of DB Instance size "
+#     type        = string
+#     default     = "db.t2.micro"
+# }

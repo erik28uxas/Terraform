@@ -18,7 +18,7 @@ variable "db_name" {
   default     = null
 }
 
-variable "db_instance_type" {
+variable "db_instance_class" {
     description = "The type of DB Instance size "
     type        = string
 }

@@ -1,7 +1,7 @@
 resource "aws_db_instance" "mysql_db" {
     identifier_prefix   = "MySQL-DB"
     allocated_storage   = 10
-    instance_class      = var.db_instance_type
+    instance_class      = var.db_instance_class
     skip_final_snapshot = true
 
     backup_retention_period = var.backup_retention_period
