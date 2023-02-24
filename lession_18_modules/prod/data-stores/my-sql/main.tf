@@ -7,6 +7,7 @@ terraform {
     }
 }
 
+
 provider "aws" {
     region = "us-west-2"
     alias  = "primary"
@@ -20,9 +21,7 @@ provider "aws" {
 module "mysql_db_prod" {
     source = "/home/erikgoul/Documents/Terraform/lession_18_modules/modules/data-stores/mysql"
     
-    providers = {
-      aws = aws.primary
-    }
+    provider = aws.primary
 
     db_name     = "prod_db"
     db_username = var.db_username
@@ -34,9 +33,7 @@ module "mysql_db_prod" {
 module "mysql_replica" {
     source = "/home/erikgoul/Documents/Terraform/lession_18_modules/modules/data-stores/mysql"
     
-    providers = {
-      aws = aws.replica
-    }
+    provider = aws.replica
 
     replicate_source_db = module.mysql_db_prod.arn
 }
