@@ -1,4 +1,4 @@
-resource "aws_security_group" "dynimic" {
+resource "aws_security_group" "dynamic" {
     name        = "${var.env}-sg"
     description = "Sg for ${var.env} with ingress prots ${(var.env == "dev" ? var.custom_tags["dev"] : var.custom_tags["prod"])}"
     
