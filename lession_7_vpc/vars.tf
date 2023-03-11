@@ -6,7 +6,12 @@ variable "AWS_REGION" {
 variable "vpc_cidr" {
     description = "VPC CIDR block"
     default     = "10.0.0.0/16"
-  
+
+}
+
+variable "default_cidr" {
+    description = "Value of CIDR to the world"
+    default = "0.0.0.0/0"
 }
 
 variable "public_subnet_cidrs" {
