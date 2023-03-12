@@ -20,7 +20,7 @@ resource "aws_internet_gateway" "vpc_gw" {
     vpc_id = aws_vpc.main_vpc.id
     
     tags = {
-      Name = "Main-VPC-IG"
+        Name = "Main-VPC-IG"
     }
 }
 
@@ -48,7 +48,7 @@ resource "aws_route_table" "public_subnets" {
     }
 
     tags = {
-      Name = "Main-VPC"
+        Name = "Main-VPC"
     }
 }
 
@@ -70,7 +70,7 @@ resource "aws_route_table_association" "public_routes" {
 #     map_public_ip_on_launch = false
 
 #     tags = {
-#       Name = "Main-Private-${count.index + 1}"
+#         Name = "Main-Private-${count.index + 1}"
 #     }
 # }
 
