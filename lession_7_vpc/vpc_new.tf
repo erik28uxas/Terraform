@@ -77,12 +77,12 @@ resource "aws_subnet" "private_subnets" {
 
 # ========  EIPs for NAT  ========
 resource "aws_eip" "nat" {
-    # count = length(var.private_subnet_cidrs)
+    count = length(var.private_subnet_cidrs)
     vpc   = true
 
-    # tags = {
-    #     Name = "EIP-for-Main-VPC-${count.index + 1} "
-    # }
+    tags = {
+        Name = "EIP-for-Main-VPC-${count.index + 1} "
+    }
 }
 
 
