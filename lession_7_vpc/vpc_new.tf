@@ -102,9 +102,9 @@ resource "aws_route_table" "private_subnets" {
         cidr_block     = var.default_cidr
         nat_gateway_id = aws_nat_gateway.nat_gw.*.id
     }
-    tags = {
-        Name = "Main-Private-NAT-${count.index + 1}"
-    }
+    # tags = {
+    #     Name = "Main-Private-NAT-${count.index + 1}"
+    # }
 }
 
 
