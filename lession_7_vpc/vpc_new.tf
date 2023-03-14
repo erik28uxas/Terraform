@@ -90,7 +90,7 @@ resource "aws_eip" "nat" {
 resource "aws_nat_gateway" "nat_gw" {
     count         = length(var.private_subnet_cidrs)
     allocation_id = element(aws_eip.nat.*.id, count.index)
-    subnet_id     = element(aws_subnet.private_subnets.*.id, count.index)
+    subnet_id     = element(aws_subnet.public_subnets.*.id, count.index)
     depends_on    = [aws_internet_gateway.vpc_gw]
 }
 
@@ -100,7 +100,7 @@ resource "aws_route_table" "private_subnets" {
     vpc_id = aws_vpc.main_vpc.id
     route {
         cidr_block     = var.default_cidr
-        nat_gateway_id = aws_nat_gateway.nat_gw.id
+        nat_gateway_id = aws_nat_gateway.nat_gw.*.id
     }
     tags = {
         Name = "Main-Private-NAT-${count.index + 1}"
