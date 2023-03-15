@@ -50,7 +50,7 @@ variable "instance_tenancy" {
 variable "enable_dns_hostnames" {
   description = "Should be true to enable DNS hostnames in the VPC"
   type        = bool
-  default     = false
+  default     = ture
 }
 
 variable "enable_dns_support" {
