@@ -6,27 +6,27 @@ locals {
   nat_gateway_count = var.single_nat_gateway ? 1 : var.one_nat_gateway_per_az ? length(var.azs) : local.max_subnet_length
 }
 
-# ========  VPC  ========
-resource "aws_vpc" "main_vpc" {
-  cidr_block            = var.vpc_cidr
-  instance_tenancy      = var.instance_tenancy
-  enable_dns_hostnames  = var.enable_dns_hostnames
-  enable_dns_support    = var.enable_dns_support
+# # ========  VPC  ========
+# resource "aws_vpc" "main_vpc" {
+#   cidr_block            = var.vpc_cidr
+#   instance_tenancy      = var.instance_tenancy
+#   enable_dns_hostnames  = var.enable_dns_hostnames
+#   enable_dns_support    = var.enable_dns_support
     
-  tags = {
-    Name = "M"
-  }
-}
+#   tags = {
+#     Name = "M"
+#   }
+# }
 
 
-# ========  Internet GW  ========
-resource "aws_internet_gateway" "vpc_gw" {
-  vpc_id = aws_vpc.main_vpc.id
+# # ========  Internet GW  ========
+# resource "aws_internet_gateway" "vpc_gw" {
+#   vpc_id = aws_vpc.main_vpc.id
   
-  tags = {
-    Name = "Main-VPC-IG"
-  }
-}
+#   tags = {
+#     Name = "Main-VPC-IG"
+#   }
+# }
 
 
 # ========  Route Table for Public Subnets  ========

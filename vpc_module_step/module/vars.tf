@@ -41,6 +41,14 @@ variable "create_igw" {
   default     = true
 }
 
+
+# ====== Others ======
+variable "default_cidr" {
+  description = "Value of CIDR to the world"
+  default     = "0.0.0.0/0"
+}
+
+
 # ====== Tags and Names ======
 variable "name" {
   description = "Name to be used on all the resources as identifier"
@@ -60,5 +68,16 @@ variable "igw_tags" {
   default     = {}
 }
 
+variable "public_route_table_tags" {
+  description = "Additional tags for the public route tables"
+  type        = map(string)
+  default     = {}
+}
+
+variable "public_subnet_suffix" {
+  description = "Suffix to append to public subnets name"
+  type        = string
+  default     = "public"
+}
 
 

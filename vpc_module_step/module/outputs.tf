@@ -14,3 +14,7 @@ output "igw_id" {
   value       = aws_internet_gateway.vpc_gw.id
 }
 
+output "public_route_table_ids" {
+  description = "List of IDs of public route tables"
+  value       = aws_route_table.public[*].id
+}
