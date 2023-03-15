@@ -97,23 +97,3 @@ variable "private_subnet_cidrs" {
 #   type        = string
 #   default     = ""
 # }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
