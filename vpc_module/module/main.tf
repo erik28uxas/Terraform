@@ -1,6 +1,6 @@
 locals {
   max_subnet_length = max(
-    length(var.private_subnets)
+    length(var.private_subnet_cidrs),
     # length(var.database_subnets),
   )
   nat_gateway_count = var.single_nat_gateway ? 1 : var.one_nat_gateway_per_az ? length(var.azs) : local.max_subnet_length
@@ -31,7 +31,7 @@ resource "aws_internet_gateway" "vpc_gw" {
 
 # ========  Route Table for Public Subnets  ========
 resource "aws_route_table" "public_subnets" {
-  count = length(var.public_subnets)
+  count = length(var.public_subnet_cidrs)
 
   vpc_id = aws_vpc.main_vpc.id
     
@@ -77,7 +77,7 @@ resource "aws_subnet" "public_subnets" {
 
 # ========  Private Subnets  ========
 resource "aws_subnet" "private_subnets" {
-  count = length(var.private_subnets)
+  count = length(var.private_subnet_cidrs)
 
   vpc_id               = aws_vpc.main_vpc.id
   cidr_block           = element(var.private_subnet_cidrs, count.index)
@@ -95,7 +95,7 @@ locals {
 }
 
 resource "aws_eip" "nat" {
-  count = element(concat(var.public_subnets_cidrs, [""]), count.index)
+  count = element(concat(var.public_subnet_cidrs, [""]), count.index)
 
   vpc = true
 
