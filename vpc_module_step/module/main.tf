@@ -20,7 +20,6 @@ resource "aws_internet_gateway" "vpc_gw" {
   tags = merge(
     { "Name" = var.name },
     var.tags,
-    var.vpc_tags,
+    var.igw_tags,
   )
 }
-
