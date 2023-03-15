@@ -41,7 +41,7 @@ resource "aws_route_table" "public_subnets" {
 }
 
 resource "aws_route" "public_internet_gateway" {
-  count = length(var.public_subnet_cidrs)
+  count = length(var.public_subnet_cidrs, count.index)
 
   route_table_id         = aws_route_table.public_subnets.id
   destination_cidr_block = var.default_cidr
@@ -95,7 +95,8 @@ locals {
 }
 
 resource "aws_eip" "nat" {
-  count = element(concat(var.public_subnet_cidrs, [""]), count.index)
+  # count = element(concat(var.public_subnet_cidrs, [""]), count.index)
+  count = var.enable_nat_gateway && false == var.reuse_nat_ips ? local.nat_gateway_count : 0
 
   vpc = true
 
