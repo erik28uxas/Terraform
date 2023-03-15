@@ -30,12 +30,12 @@ output "public_subnets_cidr_blocks" {
 
 output "public_route_table_ids" {
   description = "List of IDs of public route tables"
-  value       = aws_route_table.public[*].id
+  value       = aws_route_table.public_subnets[*].id
 }
 
 output "private_route_table_ids" {
   description = "List of IDs of private route tables"
-  value       = aws_route_table.private[*].id
+  value       = aws_route_table.private_subnets[*].id
 }
 
 output "public_internet_gateway_route_id" {
@@ -75,7 +75,7 @@ output "natgw_ids" {
 
 output "igw_id" {
   description = "The ID of the Internet Gateway"
-  value       = try(aws_internet_gateway.vpc_gw[0].id, "")
+  value       = aws_internet_gateway.vpc_gw.id
 }
 
 output "azs" {

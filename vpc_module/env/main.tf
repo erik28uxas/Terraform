@@ -21,5 +21,4 @@ provider "aws" {
 module "vpc" {
   source = "/home/erikgoul/Documents/Terraform/vpc_module/module"
 
-  azs = ["${var.region}a", "${var.region}b", "${var.region}c"]
 }

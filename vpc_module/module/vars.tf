@@ -75,7 +75,7 @@ variable "default_cidr" {
 variable "azs" {
   description = "A list of availability zones names or ids in the region"
   type        = list(string)
-  default     = []
+  default     = ["us-west-2a", "us-west-2b", "us-west-2c"]
 }
 
 variable "public_subnet_cidrs" {
@@ -92,11 +92,11 @@ variable "private_subnet_cidrs" {
 
 
 # ==============================================
-variable "name" {
-  description = "Name to be used on all the resources as identifier"
-  type        = string
-  default     = ""
-}
+# variable "name" {
+#   description = "Name to be used on all the resources as identifier"
+#   type        = string
+#   default     = ""
+# }
 
 
 
