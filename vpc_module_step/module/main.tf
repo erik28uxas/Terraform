@@ -10,3 +10,17 @@ resource "aws_vpc" "main_vpc" {
     var.vpc_tags,
   )
 }
+
+# ========  Internet GW  ========
+resource "aws_internet_gateway" "vpc_gw" {
+#   count = local.create_vpc && var.create_igw && length(var.public_subnets) > 0 ? 1 : 0
+  
+  vpc_id = aws_vpc.main_vpc.id
+  
+  tags = merge(
+    { "Name" = var.name },
+    var.tags,
+    var.vpc_tags,
+  )
+}
+
