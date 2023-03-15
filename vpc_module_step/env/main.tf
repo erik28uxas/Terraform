@@ -32,6 +32,11 @@ module "vpc" {
     Name = "Main VPC"
   }
 
+  igw_tags = {
+    Name = "Main VPC IGW"
+  }
+
+
   tags = local.tags
 
 }

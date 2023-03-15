@@ -41,6 +41,12 @@ variable "create_igw" {
   default     = true
 }
 
+variable "igw_tags" {
+  description = "Additional tags for the internet gateway"
+  type        = map(string)
+  default     = {}
+}
+
 # ====== Tags and Names ======
 variable "name" {
   description = "Name to be used on all the resources as identifier"
