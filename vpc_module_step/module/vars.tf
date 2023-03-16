@@ -48,6 +48,25 @@ variable "default_cidr" {
   default     = "0.0.0.0/0"
 }
 
+# ====== Public Subnet ======
+ariable "azs" {
+  description = "A list of availability zones names or ids in the region"
+  type        = list(string)
+  default     = ["us-west-2a", "us-west-2b", "us-west-2c"]
+}
+
+variable "public_subnet_cidrs" {
+  description = "Public Subnets CIDRs"
+  type        = list(string)
+  default     = []
+}
+
+variable "private_subnet_cidrs" {
+  description = "Public Subnets CIDRs"
+  type        = list(string)
+  default     = []
+}
+
 
 # ====== Tags and Names ======
 variable "name" {
@@ -80,4 +99,20 @@ variable "public_subnet_suffix" {
   default     = "public"
 }
 
+variable "public_subnet_names" {
+  description = "Explicit values to use in the Name tag on public subnets. If empty, Name tags are generated."
+  type        = list(string)
+  default     = []
+}
 
+variable "public_subnet_tags" {
+  description = "Additional tags for the public subnets"
+  type        = map(string)
+  default     = {}
+}
+
+variable "public_subnet_tags_per_az" {
+  description = "Additional tags for the public subnets where the primary key is the AZ"
+  type        = map(map(string))
+  default     = {}
+}

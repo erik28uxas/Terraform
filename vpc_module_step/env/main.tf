@@ -9,15 +9,13 @@ terraform {
   }
 }
 
-variable "aws_region" {
-    default = "us-west-2"
-}
-
 provider "aws" {
-    region = var.aws_region
+    region = local.aws_region
 }
 
 locals {
+  region = "us-west-2"
+
   tags = {
     ManagedBy = "Terraform"
   }
@@ -26,6 +24,21 @@ locals {
 
 module "vpc" {
   source = "/home/erikgoul/Documents/Terraform/vpc_module_step/module"
+
+
+  azs                 = ["${local.region}a", "${local.region}b", "${local.region}c"]
+  public_subnet_cidrs = ["10.0.1.0/24", "10.0.2.0/24", "10.0.3.0/24"]
+
+  
+  public_subnet_tags = {
+    Name = "Main VPC public"
+  }
+
+  public_subnet_tags_per_az = {
+    "${local.region}a" = {
+      "availability-zone" = "${local.region}a"
+    }
+  }
 
 
   vpc_tags = {
