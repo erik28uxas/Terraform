@@ -31,7 +31,7 @@ module "vpc" {
 
   
   public_subnet_tags = {
-    Name = "Main VPC public ${element(var.azs, count.index)}"
+    Name = "Main VPC public subnet ${count.index}"
   }
 
   public_subnet_tags_per_az = {
