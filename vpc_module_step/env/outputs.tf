@@ -13,10 +13,10 @@ output "igw_id" {
    value       = module.vpc.igw_id
 }
 
-output "public_route_table_ids" {
-  description = "List of IDs of public route tables"
-  value       = module.vpc.public_route_table_ids
-}
+# output "public_route_table_ids" {
+#   description = "List of IDs of public route tables"
+#   value       = module.vpc.public_route_table_ids
+# }
 
 output "public_internet_gateway_route_id" {
   description = "ID of the internet gateway route"
