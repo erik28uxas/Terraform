@@ -35,7 +35,7 @@ output "public_subnets" {
 
 output "public_subnet_arns" {
   description = "List of ARNs of public subnets"
-  value       = module.vpc.public_subnets_arns
+  value       = module.vpc.public_subnet_arns
 }
 
 output "public_subnets_cidr_blocks" {

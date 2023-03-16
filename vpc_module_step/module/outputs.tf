@@ -16,7 +16,7 @@ output "igw_id" {
 
 output "public_route_table_ids" {
   description = "List of IDs of public route tables"
-  value       = aws_route_table.public[*].id
+  value       = aws_route_table.public_subents[*].id
 }
 
 output "public_internet_gateway_route_id" {
