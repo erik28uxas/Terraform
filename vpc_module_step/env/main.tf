@@ -18,6 +18,7 @@ locals {
 
   tags = {
     ManagedBy = "Terraform"
+    Owner     = "Ernest"
   }
 }
 
@@ -31,7 +32,7 @@ module "vpc" {
 
   
   public_subnet_tags = {
-    Name = "Main VPC public subnet ${count.index}"
+    Name = "Main VPC public subnet" 
   }
 
   public_subnet_tags_per_az = {
