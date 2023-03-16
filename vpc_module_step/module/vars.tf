@@ -49,7 +49,7 @@ variable "default_cidr" {
 }
 
 # ====== Public Subnet ======
-ariable "azs" {
+variable "azs" {
   description = "A list of availability zones names or ids in the region"
   type        = list(string)
   default     = ["us-west-2a", "us-west-2b", "us-west-2c"]
