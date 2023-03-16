@@ -29,7 +29,7 @@ resource "aws_internet_gateway" "vpc_gw" {
 # ========  Route Table for Public Subnets  ========
 resource "aws_route_table" "public_subnets" {
 #   count = local.create_vpc && length(var.public_subnets) > 0 ? 1 : 0
-  count = length(var.public_subnets) > 0 ? 1 : 0
+  count = length(var.public_subnet_cidrs) > 0 ? 1 : 0
 
   vpc_id = aws_vpc.main_vpc.id
     
