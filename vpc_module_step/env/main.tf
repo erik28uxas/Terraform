@@ -49,7 +49,7 @@ module "vpc" {
     Name = "Main VPC IGW"
   }
 
-
+  name = "test_name_env"
   tags = local.tags
 
 }
