@@ -31,7 +31,7 @@ module "vpc" {
 
   
   public_subnet_tags = {
-    Name = "Main VPC public"
+    Name = "Main VPC public ${element(var.azs, count.index)}"
   }
 
   public_subnet_tags_per_az = {
@@ -40,6 +40,9 @@ module "vpc" {
     }
     "${local.region}b" = {
       "availability-zone" = "${local.region}b"
+    }
+    "${local.region}c" = {
+      "availability-zone" = "${local.region}c"
     }
   }
 
@@ -52,7 +55,7 @@ module "vpc" {
     Name = "Main VPC IGW"
   }
 
-  name = "test_name_env"
+
   tags = local.tags
 
 }
