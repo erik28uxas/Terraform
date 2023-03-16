@@ -38,6 +38,9 @@ module "vpc" {
     "${local.region}a" = {
       "availability-zone" = "${local.region}a"
     }
+    "${local.region}b" = {
+      "availability-zone" = "${local.region}b"
+    }
   }
 
 
