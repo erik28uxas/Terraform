@@ -50,7 +50,7 @@ output "private_subnets" {
 
 output "private_subnet_arns" {
   description = "List of ARNs of public subnets"
-  value       = module.vpc.private_subnets_arns
+  value       = module.vpc.private_subnet_arns
 }
 
 output "private_subnets_cidr_blocks" {
@@ -71,7 +71,7 @@ output "private_route_table_association_ids" {
 
 output "nat_ids" {
   description = "List of allocation ID of Elastic IPs created for AWS NAT Gateway"
-  value       = moduel.vpc.nat_ids
+  value       = module.vpc.nat_ids
 }
 
 output "nat_public_ips" {

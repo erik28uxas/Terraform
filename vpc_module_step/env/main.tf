@@ -32,7 +32,7 @@ module "vpc" {
   private_subnet_cidrs = ["10.0.4.0/24", "10.0.5.0/24", "10.0.6.0/24"]
 
 
-  public_subnet_names = "Main Public Subnet"
+#   public_subnet_names = "Main Public Subnet"
 
   public_subnet_tags = {
     Name = "Main VPC public subnet" 
@@ -50,7 +50,7 @@ module "vpc" {
     }
   }
   
-  private_subnet_names = "Main Private Subnet"
+#   private_subnet_names = "Main Private Subnet"
 
   private_subnet_tags = {
     Name = "Main VPC public subnet" 
@@ -78,6 +78,11 @@ module "vpc" {
     Name = "Main VPC IGW"
   }
 
+  nat_eip_tags = {
+    Info = "EIP-in-${local.region}a"
+    Info = "EIP-in-${local.region}b"
+    Info = "EIP-in-${local.region}c"
+  }
 
   tags = local.tags
 

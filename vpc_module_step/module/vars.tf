@@ -133,6 +133,21 @@ variable "public_route_table_tags" {
   default     = {}
 }
 
+variable "private_route_table_tags" {
+  description = "Additional tags for the private route tables"
+  type        = map(string)
+  default     = {}
+}
+
+variable "nat_eip_tags" {
+  description = "Additional tags for the NAT EIP"
+  type        = map(string)
+  default     = {}
+}
+
+
+
+
 
 
 variable "public_subnet_suffix" {
