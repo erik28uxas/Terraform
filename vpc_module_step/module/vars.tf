@@ -79,6 +79,12 @@ variable "nat_gateway_destination_cidr_block" {
   default     = "0.0.0.0/0"
 }
 
+variable "nat_gateway_tags" {
+  description = "Additional tags for the NAT gateways"
+  type        = map(string)
+  default     = {}
+}
+
 
 
 # ====== Public Subnet ======
