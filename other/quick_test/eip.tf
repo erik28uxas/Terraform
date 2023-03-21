@@ -6,9 +6,12 @@
 #         Name = "EIP-for-Main-VPC-${count.index + 1} "
 #     }
 # }
+variable "aws_region" {
+    default = "us-west-2"  
+}
+
 provider "aws" {
-    region = "us-west-2"
-  
+    region = var.aws_region
 }
 
 resource "aws_instance" "example" {
