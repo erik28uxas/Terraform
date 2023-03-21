@@ -6,6 +6,8 @@
 #         Name = "EIP-for-Main-VPC-${count.index + 1} "
 #     }
 # }
+
+
 variable "aws_region" {
     default = "us-west-2"  
 }
@@ -28,6 +30,8 @@ resource "aws_instance" "example" {
     volume_size = 4
   } 
 }
+
+
 
 
 
