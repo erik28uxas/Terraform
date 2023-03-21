@@ -30,6 +30,7 @@ resource "aws_instance" "example" {
 }
 
 
+
 output "ebs_blocks" {
     value = ws_instance.example.ebs_block_device.*.volume_id
 }
