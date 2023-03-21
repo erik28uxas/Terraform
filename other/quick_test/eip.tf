@@ -28,5 +28,5 @@ resource "aws_instance" "example" {
 
 
 output "ebs_blocks" {
-    value = aws_instance.example.ebs_block_device.*.volume_id
+    value = ws_instance.example.ebs_block_device.*.volume_id
 }
