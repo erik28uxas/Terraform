@@ -6,7 +6,10 @@
 #         Name = "EIP-for-Main-VPC-${count.index + 1} "
 #     }
 # }
-
+provider "aws" {
+    region = "us-west-2"
+  
+}
 
 resource "aws_instance" "example" {
   ami = "ami-0688ba7eeeeefe3cd"
