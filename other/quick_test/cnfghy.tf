@@ -18,7 +18,7 @@ resource "aws_instance" "example" {
   }
   
   ebs_block_device {
-    device_name = "sda4"
+    device_name = "sdb3"
     volume_size = 4
   } 
 }
