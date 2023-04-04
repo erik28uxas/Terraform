@@ -74,7 +74,8 @@ resource "aws_route" "public_internet_gateway" {
 
   route_table_id         = aws_route_table.public_subnets[0].id
   destination_cidr_block = var.default_cidr
-  gateway_id             = aws_internet_gateway.vpc_gw[0].id
+  # gateway_id             = aws_internet_gateway.vpc_gw[0].id
+  gateway_id             = aws_internet_gateway.vpc_gw.id
 }
 
 # ========  Public Subnets  ========

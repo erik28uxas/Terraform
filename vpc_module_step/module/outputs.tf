@@ -10,8 +10,8 @@ output "vpc_cidr" {
 
 output "igw_id" {
   description = "The ID of the Internet Gateway"
-  value       = try(aws_internet_gateway.vpc_gw[0].id, "")
-  # value       = aws_internet_gateway.vpc_gw.id
+  # value       = try(aws_internet_gateway.vpc_gw[0].id, "")
+  value       = aws_internet_gateway.vpc_gw.id
 }
 
 # output "public_route_table_ids" {
