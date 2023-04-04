@@ -23,7 +23,7 @@ resource "aws_vpc" "main_vpc" {
 
 # ========  Internet GW  ========
 resource "aws_internet_gateway" "vpc_gw" {
-  count = local.create_vpc && var.create_igw && length(var.public_subnets) > 0 ? 1 : 0
+  count = local.create_vpc && var.create_igw && length(var.public_subnet_cidrs) > 0 ? 1 : 0
   
   vpc_id = aws_vpc.main_vpc.id
   
@@ -37,7 +37,7 @@ resource "aws_internet_gateway" "vpc_gw" {
 
 # ========  Route Table for Public Subnets  ========
 resource "aws_route_table" "public_subnets" {
-  count = local.create_vpc && length(var.public_subnets) > 0 ? 1 : 0
+  count = local.create_vpc && length(var.public_subnet_cidrs) > 0 ? 1 : 0
   # count = length(var.public_subnet_cidrs) > 0 ? 1 : 0
 
   vpc_id = aws_vpc.main_vpc.id
@@ -79,7 +79,7 @@ resource "aws_route" "public_internet_gateway" {
 
 # ========  Public Subnets  ========
 resource "aws_subnet" "public_subnets" {
-  count = local.create_vpc && length(var.public_subnets) > 0 && (false == var.one_nat_gateway_per_az || length(var.public_subnets) >= length(var.azs)) ? length(var.public_subnets) : 0
+  count = local.create_vpc && length(var.public_subnet_cidrs) > 0 && (false == var.one_nat_gateway_per_az || length(var.public_subnet_cidrs) >= length(var.azs)) ? length(var.public_subnet_cidrs) : 0
   # count = length(var.public_subnet_cidrs)
 
   vpc_id                  = aws_vpc.main_vpc.id
@@ -103,7 +103,7 @@ resource "aws_subnet" "public_subnets" {
 
 # ========  Private Subnets  ========
 resource "aws_subnet" "private_subnets" {
-  count = local.create_vpc && length(var.private_subnets) > 0 ? length(var.private_subnets) : 0
+  count = local.create_vpc && length(var.public_subnet_cidrs) > 0 ? length(var.public_subnet_cidrs) : 0
   # count = length(var.private_subnet_cidrs)
 
   vpc_id               = aws_vpc.main_vpc.id
