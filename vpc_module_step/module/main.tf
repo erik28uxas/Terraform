@@ -4,6 +4,7 @@ locals {
     # length(var.database_subnets),
   )
   nat_gateway_count = var.single_nat_gateway ? 1 : var.one_nat_gateway_per_az ? length(var.azs) : local.max_subnet_length
+  create_vpc = var.create_vpc
 }
 
 resource "aws_vpc" "main_vpc" {
@@ -22,7 +23,7 @@ resource "aws_vpc" "main_vpc" {
 
 # ========  Internet GW  ========
 resource "aws_internet_gateway" "vpc_gw" {
-#   count = local.create_vpc && var.create_igw && length(var.public_subnets) > 0 ? 1 : 0
+  count = local.create_vpc && var.create_igw && length(var.public_subnets) > 0 ? 1 : 0
   
   vpc_id = aws_vpc.main_vpc.id
   
@@ -36,8 +37,8 @@ resource "aws_internet_gateway" "vpc_gw" {
 
 # ========  Route Table for Public Subnets  ========
 resource "aws_route_table" "public_subnets" {
-#   count = local.create_vpc && length(var.public_subnets) > 0 ? 1 : 0
-  count = length(var.public_subnet_cidrs) > 0 ? 1 : 0
+  count = local.create_vpc && length(var.public_subnets) > 0 ? 1 : 0
+  # count = length(var.public_subnet_cidrs) > 0 ? 1 : 0
 
   vpc_id = aws_vpc.main_vpc.id
     
@@ -50,7 +51,7 @@ resource "aws_route_table" "public_subnets" {
 
 # ========  Route Table for Private Subnets  ========
 resource "aws_route_table" "private" {
-  count = local.max_subnet_length > 0 ? local.nat_gateway_count : 0
+  count = local.create_vpc && local.max_subnet_length > 0 ? local.nat_gateway_count : 0
   
   vpc_id = aws_vpc.main_vpc.id
 
@@ -68,8 +69,8 @@ resource "aws_route_table" "private" {
 
 
 resource "aws_route" "public_internet_gateway" {
-#   count = local.create_vpc && var.create_igw && length(var.public_subnets) > 0 ? 1 : 0
-  count = var.create_igw && length(var.public_subnet_cidrs) > 0 ? 1 : 0
+  count = local.create_vpc && var.create_igw && length(var.public_subnets) > 0 ? 1 : 0
+  # count = var.create_igw && length(var.public_subnet_cidrs) > 0 ? 1 : 0
 
   route_table_id         = aws_route_table.public_subnets[0].id
   destination_cidr_block = var.default_cidr
@@ -78,7 +79,8 @@ resource "aws_route" "public_internet_gateway" {
 
 # ========  Public Subnets  ========
 resource "aws_subnet" "public_subnets" {
-  count = length(var.public_subnet_cidrs)
+  count = local.create_vpc && length(var.public_subnets) > 0 && (false == var.one_nat_gateway_per_az || length(var.public_subnets) >= length(var.azs)) ? length(var.public_subnets) : 0
+  # count = length(var.public_subnet_cidrs)
 
   vpc_id                  = aws_vpc.main_vpc.id
   cidr_block              = element(concat(var.public_subnet_cidrs, [""]), count.index)
@@ -101,7 +103,8 @@ resource "aws_subnet" "public_subnets" {
 
 # ========  Private Subnets  ========
 resource "aws_subnet" "private_subnets" {
-  count = length(var.private_subnet_cidrs)
+  count = local.create_vpc && length(var.private_subnets) > 0 ? length(var.private_subnets) : 0
+  # count = length(var.private_subnet_cidrs)
 
   vpc_id               = aws_vpc.main_vpc.id
   cidr_block           = element(var.private_subnet_cidrs, count.index)
@@ -129,7 +132,7 @@ locals {
 
 resource "aws_eip" "nat" {
   # count = element(concat(var.public_subnet_cidrs, [""]), count.index)
-  count = var.enable_nat_gateway && false == var.reuse_nat_ips ? local.nat_gateway_count : 0
+  count = local.create_vpc && var.enable_nat_gateway && false == var.reuse_nat_ips ? local.nat_gateway_count : 0
 
   vpc = true
 
@@ -147,7 +150,7 @@ resource "aws_eip" "nat" {
 
 
 resource "aws_nat_gateway" "main" {
-  count = var.enable_nat_gateway ? local.nat_gateway_count : 0
+  count = local.create_vpc && var.enable_nat_gateway ? local.nat_gateway_count : 0
 
   allocation_id = element(local.nat_gateway_ips, var.single_nat_gateway ? 0 : count.index)
   subnet_id     = element(aws_subnet.public_subnets[*], var.single_nat_gateway ? 0 : count.index)
@@ -168,7 +171,7 @@ resource "aws_nat_gateway" "main" {
 
 
 resource "aws_route" "private_nat_gateway" {
-  count = var.enable_nat_gateway ? local.nat_gateway_count : 0
+  count = local.create_vpc && var.enable_nat_gateway ? local.nat_gateway_count : 0
 
   route_table_id         = element(aws_route_table.private[*].id, count.index)
   destination_cidr_block = var.nat_gateway_destination_cidr_block
@@ -176,7 +179,7 @@ resource "aws_route" "private_nat_gateway" {
 }
 
 resource "aws_route_table_association" "private" {
-  count     = length(var.private_subnet_cidrs)
+  count = local.create_vpc && length(var.private_subnets) > 0 ? length(var.private_subnets) : 0
 
   subnet_id      = element(aws_subnet.private_subnets[*].id, count.index) 
   route_table_id = element(aws_route_table.private[*].id, var.single_nat_gateway ? 0 : count.index)
@@ -185,7 +188,7 @@ resource "aws_route_table_association" "private" {
 
 
 resource "aws_route_table_association" "public" {
-  count     = length(var.public_subnet_cidrs)
+  count = local.create_vpc && length(var.public_subnets) > 0 ? length(var.public_subnets) : 0
 
   subnet_id      = element(aws_subnet.public_subnets[*].id, count.index)
   route_table_id = aws_route_table.public_subnets[0].id
