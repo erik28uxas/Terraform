@@ -107,20 +107,22 @@ variable "nat_gateway_tags" {
 variable "azs" {
   description = "A list of availability zones names or ids in the region"
   type        = list(string)
-  # default     = []
-  default     = ["us-west-2a", "us-west-2b", "us-west-2c"]
+  default     = []
+  # default     = ["us-west-2a", "us-west-2b", "us-west-2c"]
 }
 
 variable "public_subnet_cidrs" {
   description = "Public Subnets CIDRs"
   type        = list(string)
-  default     = ["10.0.1.0/24", "10.0.2.0/24", "10.0.3.0/24"]
+  default     = []  
+  # default     = ["10.0.1.0/24", "10.0.2.0/24", "10.0.3.0/24"]
 }
 
 variable "private_subnet_cidrs" {
   description = "Private Subnets CIDRs"
   type        = list(string)
-  default     = ["10.0.4.0/24", "10.0.5.0/24", "10.0.6.0/24"]
+  default     = []
+  # default     = ["10.0.4.0/24", "10.0.5.0/24", "10.0.6.0/24"]
 }
 
 
