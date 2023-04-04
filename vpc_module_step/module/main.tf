@@ -38,7 +38,7 @@ resource "aws_vpc_ipv4_cidr_block_association" "this" {
 
 # ========  Internet GW  ========
 resource "aws_internet_gateway" "vpc_gw" {
-  count = local.create_vpc && var.create_igw && length(var.public_subnet_cidrs) > 0 ? 1 : 0
+  # count = local.create_vpc && var.create_igw && length(var.public_subnet_cidrs) > 0 ? 1 : 0
   
   # vpc_id = aws_vpc.main_vpc.id
   vpc_id = local.vpc_id
