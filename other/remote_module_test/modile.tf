@@ -18,7 +18,7 @@ locals {
 ################################################################################
 
 module "vpc" {
-  source = "https://github.com/terraform-aws-modules/terraform-aws-vpc/blob/main.tf"
+  source = "https://github.com/terraform-aws-modules/terraform-aws-vpc"
   version = "3.19.0"
   
 
