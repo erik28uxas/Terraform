@@ -96,8 +96,8 @@ resource "aws_route" "public_internet_gateway" {
 
 # ========  Public Subnets  ========
 resource "aws_subnet" "public_subnets" {
-  count = local.create_vpc && length(var.public_subnet_cidrs) > 0 && (false == var.one_nat_gateway_per_az || length(var.public_subnet_cidrs) >= length(var.azs)) ? length(var.public_subnet_cidrs) : 0
-  # count = length(var.public_subnet_cidrs)
+  # count = local.create_vpc && length(var.public_subnet_cidrs) > 0 && (false == var.one_nat_gateway_per_az || length(var.public_subnet_cidrs) >= length(var.azs)) ? length(var.public_subnet_cidrs) : 0
+  count = length(var.public_subnet_cidrs)
 
   vpc_id                  = local.vpc_id
   cidr_block              = element(concat(var.public_subnet_cidrs, [""]), count.index)
