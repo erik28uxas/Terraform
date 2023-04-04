@@ -4,6 +4,10 @@ locals {
     # length(var.database_subnets),
   )
   nat_gateway_count = var.single_nat_gateway ? 1 : var.one_nat_gateway_per_az ? length(var.azs) : local.max_subnet_length
+  
+  # Use `local.vpc_id` to give a hint to Terraform that subnets should be deleted before secondary CIDR blocks can be free!
+  vpc_id = try(aws_vpc_ipv4_cidr_block_association.this[0].vpc_id, aws_vpc.this[0].id, "")
+  
   create_vpc = var.create_vpc
 }
 
@@ -20,12 +24,22 @@ resource "aws_vpc" "main_vpc" {
   )
 }
 
+resource "aws_vpc_ipv4_cidr_block_association" "this" {
+  count = local.create_vpc && length(var.secondary_cidr_blocks) > 0 ? length(var.secondary_cidr_blocks) : 0
+
+  # Do not turn this into `local.vpc_id`
+  vpc_id = aws_vpc.this[0].id
+
+  cidr_block = element(var.secondary_cidr_blocks, count.index)
+}
+
 
 # ========  Internet GW  ========
 resource "aws_internet_gateway" "vpc_gw" {
-  # count = local.create_vpc && var.create_igw && length(var.public_subnet_cidrs) > 0 ? 1 : 0
+  count = local.create_vpc && var.create_igw && length(var.public_subnet_cidrs) > 0 ? 1 : 0
   
-  vpc_id = aws_vpc.main_vpc.id
+  # vpc_id = aws_vpc.main_vpc.id
+  vpc_id = local.vpc_id
   
   tags = merge(
     { "Name" = var.name },
@@ -74,8 +88,8 @@ resource "aws_route" "public_internet_gateway" {
 
   route_table_id         = aws_route_table.public_subnets[0].id
   destination_cidr_block = var.default_cidr
-  # gateway_id             = aws_internet_gateway.vpc_gw[0].id
-  gateway_id             = aws_internet_gateway.vpc_gw.id
+  gateway_id             = aws_internet_gateway.vpc_gw[0].id
+  # gateway_id             = aws_internet_gateway.vpc_gw.id
 }
 
 # ========  Public Subnets  ========
