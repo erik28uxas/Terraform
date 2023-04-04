@@ -56,7 +56,7 @@ resource "aws_route_table" "public_subnets" {
   count = local.create_vpc && length(var.public_subnet_cidrs) > 0 ? 1 : 0
   # count = length(var.public_subnet_cidrs) > 0 ? 1 : 0
 
-  vpc_id = aws_vpc.main_vpc.id
+  vpc_id = local.vpc_id
     
   tags = merge(
     { "Name" = "${var.name}-${var.public_subnet_suffix}" },
@@ -69,7 +69,7 @@ resource "aws_route_table" "public_subnets" {
 resource "aws_route_table" "private" {
   count = local.create_vpc && local.max_subnet_length > 0 ? local.nat_gateway_count : 0
   
-  vpc_id = aws_vpc.main_vpc.id
+  vpc_id = local.vpc_id
 
   tags = merge(
     {
@@ -99,7 +99,7 @@ resource "aws_subnet" "public_subnets" {
   count = local.create_vpc && length(var.public_subnet_cidrs) > 0 && (false == var.one_nat_gateway_per_az || length(var.public_subnet_cidrs) >= length(var.azs)) ? length(var.public_subnet_cidrs) : 0
   # count = length(var.public_subnet_cidrs)
 
-  vpc_id                  = aws_vpc.main_vpc.id
+  vpc_id                  = local.vpc_id
   cidr_block              = element(concat(var.public_subnet_cidrs, [""]), count.index)
   availability_zone       = length(regexall("^[a-z]{2}-", element(var.azs, count.index))) > 0 ? element(var.azs, count.index) : null
   availability_zone_id    = length(regexall("^[a-z]{2}-", element(var.azs, count.index))) == 0 ? element(var.azs, count.index) : null
@@ -123,7 +123,7 @@ resource "aws_subnet" "private_subnets" {
   count = local.create_vpc && length(var.public_subnet_cidrs) > 0 ? length(var.public_subnet_cidrs) : 0
   # count = length(var.private_subnet_cidrs)
 
-  vpc_id               = aws_vpc.main_vpc.id
+  vpc_id               = local.vpc_id
   cidr_block           = element(var.private_subnet_cidrs, count.index)
   availability_zone    = length(regexall("^[a-z]{2}-", element(var.azs, count.index))) > 0 ? element(var.azs, count.index) : null
   availability_zone_id = length(regexall("^[a-z]{2}-", element(var.azs, count.index))) == 0 ? element(var.azs, count.index) : null
