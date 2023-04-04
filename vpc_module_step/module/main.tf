@@ -23,7 +23,7 @@ resource "aws_vpc" "main_vpc" {
 
 # ========  Internet GW  ========
 resource "aws_internet_gateway" "vpc_gw" {
-  count = local.create_vpc && var.create_igw && length(var.public_subnet_cidrs) > 0 ? 1 : 0
+  # count = local.create_vpc && var.create_igw && length(var.public_subnet_cidrs) > 0 ? 1 : 0
   
   vpc_id = aws_vpc.main_vpc.id
   
