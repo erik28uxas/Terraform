@@ -43,46 +43,46 @@ output "public_subnets_cidr_blocks" {
   value       = module.vpc.public_subnets_cidr_blocks
 }
 
-# output "private_subnets" {
-#   description = "List of IDs of private subnets"
-#   value       = module.vpc.private_subnets
-# }
+output "private_subnets" {
+  description = "List of IDs of private subnets"
+  value       = module.vpc.private_subnets
+}
 
-# output "private_subnet_arns" {
-#   description = "List of ARNs of public subnets"
-#   value       = module.vpc.private_subnet_arns
-# }
+output "private_subnet_arns" {
+  description = "List of ARNs of public subnets"
+  value       = module.vpc.private_subnet_arns
+}
 
-# output "private_subnets_cidr_blocks" {
-#   description = "List of cidr_blocks of private subnets"
-#   value       = module.vpc.private_subnets_cidr_blocks
-# }
-#  ##########
+output "private_subnets_cidr_blocks" {
+  description = "List of cidr_blocks of private subnets"
+  value       = module.vpc.private_subnets_cidr_blocks
+}
+ ##########
 
-#  output "private_nat_gateway_route_ids" {
-#   description = "List of IDs of the private nat gateway route"
-#   value       = module.vpc.private_nat_gateway_route_ids
-# }
+ output "private_nat_gateway_route_ids" {
+  description = "List of IDs of the private nat gateway route"
+  value       = module.vpc.private_nat_gateway_route_ids
+}
 
-# output "private_route_table_association_ids" {
-#   description = "List of IDs of the private route table association"
-#   value       = module.vpc.private_route_table_association_ids
-# }
+output "private_route_table_association_ids" {
+  description = "List of IDs of the private route table association"
+  value       = module.vpc.private_route_table_association_ids
+}
 
-# output "nat_ids" {
-#   description = "List of allocation ID of Elastic IPs created for AWS NAT Gateway"
-#   value       = module.vpc.nat_ids
-# }
+output "nat_ids" {
+  description = "List of allocation ID of Elastic IPs created for AWS NAT Gateway"
+  value       = module.vpc.nat_ids
+}
 
-# output "nat_public_ips" {
-#   description = "List of public Elastic IPs created for AWS NAT Gateway"
-#   value       = module.vpc.nat_public_ips
-# }
+output "nat_public_ips" {
+  description = "List of public Elastic IPs created for AWS NAT Gateway"
+  value       = module.vpc.nat_public_ips
+}
 
-# output "natgw_ids" {
-#   description = "List of NAT Gateway IDs"
-#   value       = module.vpc.natgw_ids
-# }
+output "natgw_ids" {
+  description = "List of NAT Gateway IDs"
+  value       = module.vpc.natgw_ids
+}
 
 output "azs" {
   description = "A list of availability zones specified as argument to this module"
