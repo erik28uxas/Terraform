@@ -18,7 +18,9 @@ locals {
 ################################################################################
 
 module "vpc" {
-  source = "https://github.com/terraform-aws-modules/terraform-aws-vpc"
+  source = "https://github.com/terraform-aws-modules/terraform-aws-vpc/blob/main.tf"
+  version = "3.19.0"
+  
 
   name = local.name
   cidr = "10.0.0.0/16"
@@ -48,3 +50,4 @@ module "vpc" {
     Name = "vpc-name"
   }
 }
+
