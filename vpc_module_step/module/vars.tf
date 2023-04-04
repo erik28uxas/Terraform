@@ -10,6 +10,15 @@ variable "secondary_cidr_blocks" {
   default     = []
 }
 
+
+# ====== Internet Gateway ======
+variable "create_igw" {
+  description = "Controls if an Internet Gateway is created for public subnets and the related routes that connect them."
+  type        = bool
+  default     = true
+}
+
+
 # ====== VPC Vars ======
 variable "vpc_cidr" {
   description = "VPC CIDR block"
@@ -46,12 +55,7 @@ variable "vpc_tags" {
   default     = {}
 }
 
-# ====== Internet Gateway ======
-variable "create_igw" {
-  description = "Controls if an Internet Gateway is created for public subnets and the related routes that connect them."
-  type        = bool
-  default     = true
-}
+
 
 
 # ====== NAT Gateway ======
