@@ -18,7 +18,7 @@ locals {
 ################################################################################
 
 module "vpc" {
-  source = "github.com/terraform-aws-modules/terraform-aws-vpc/blob/7010e70b9a81a06e2c11fd11c835fb69bd0879f5/main.tf"
+  source = "https://github.com/terraform-aws-modules/terraform-aws-vpc"
 
   name = local.name
   cidr = "10.0.0.0/16"
