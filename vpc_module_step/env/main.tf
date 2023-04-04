@@ -32,12 +32,12 @@ module "vpc" {
   private_subnet_cidrs = ["10.0.4.0/24", "10.0.5.0/24", "10.0.6.0/24"]
 
 
-  enable_nat_gateway     = true
-  single_nat_gateway     = false
-  one_nat_gateway_per_az = true 
-  external_nat_ip_ids    = "${aws_eip.nat.*.id}"
+  # enable_nat_gateway     = true
+  # single_nat_gateway     = false
+  # one_nat_gateway_per_az = true 
+  # external_nat_ip_ids    = "${aws_eip.nat.*.id}"
 
-#   public_subnet_names = "Main Public Subnet"
+  public_subnet_names = "Main Public Subnet"
 
   public_subnet_tags = {
     Name = "Main VPC public subnet" 
