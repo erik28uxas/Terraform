@@ -27,7 +27,7 @@ module "vpc" {
   source = "/home/erikgoul/Documents/Terraform/vpc_module_step/module"
 
 
-  azs                  = ["${local.region}a", "${local.region}b", "${local.region}c"]
+  # azs                  = ["${local.region}a", "${local.region}b", "${local.region}c"]
   # public_subnet_cidrs  = ["10.0.1.0/24", "10.0.2.0/24", "10.0.3.0/24"]
   private_subnet_cidrs = ["10.0.4.0/24", "10.0.5.0/24", "10.0.6.0/24"]
 
