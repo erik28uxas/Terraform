@@ -81,7 +81,7 @@ output "nat_ids" {
 
 output "nat_public_ips" {
   description = "List of public Elastic IPs created for AWS NAT Gateway"
-  value       = var.reuse_nat_ips ? var.external_nat_ips : aws_eip.nat[*].public_ip
+  value       = var.reuse_nat_ips ? var.external_nat_ip_ids : aws_eip.nat[*].public_ip
 }
 
 output "natgw_ids" {
