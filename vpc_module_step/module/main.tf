@@ -8,8 +8,6 @@ locals {
 }
 
 resource "aws_vpc" "main_vpc" {
-  count = local.create_vpc ? 1 : 0
-  
   cidr_block            = var.vpc_cidr
   instance_tenancy      = var.instance_tenancy
   enable_dns_hostnames  = var.enable_dns_hostnames
