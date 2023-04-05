@@ -37,9 +37,9 @@ module "vpc" {
   enable_nat_gateway     = true
   single_nat_gateway     = false
   one_nat_gateway_per_az = true 
-  external_nat_ip_ids    = "${aws_eip.nat.*.id}"
+  external_nat_ip_ids    = "${aws_eip.nat[*].id}"
 
-  public_subnet_names = "Main Public Subnet"
+  # public_subnet_names = "Main Public Subnet"
 
   public_subnet_tags = {
     Name = "Main VPC public subnet" 
