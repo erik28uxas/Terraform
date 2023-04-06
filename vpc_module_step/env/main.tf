@@ -40,7 +40,8 @@ module "vpc" {
   # external_nat_ip_ids    = "${aws_eip.nat.*.id}"
 
   # public_subnet_names = "Main Public Subnet"
-
+  name = "Main"
+  
   public_subnet_tags = {
     Name = "Main VPC public subnet" 
   }
