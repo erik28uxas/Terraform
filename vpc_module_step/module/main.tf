@@ -39,8 +39,6 @@ resource "aws_vpc_ipv4_cidr_block_association" "this" {
 # ========  Internet GW  ========
 resource "aws_internet_gateway" "vpc_gw" {
   count = local.create_vpc && var.create_igw && length(var.public_subnet_cidrs) > 0 ? 1 : 0
-  # count = local.create_vpc && var.create_igw && length(var.azs)> 0 ? 1 : 0
-
   
   # vpc_id = aws_vpc.main_vpc.id
   vpc_id = local.vpc_id
@@ -56,7 +54,6 @@ resource "aws_internet_gateway" "vpc_gw" {
 # ========  Route Table for Public Subnets  ========
 resource "aws_route_table" "public_subnets" {
   count = local.create_vpc && length(var.public_subnet_cidrs) > 0 ? 1 : 0
-  # count = length(var.public_subnet_cidrs) > 0 ? 1 : 0
 
   vpc_id = local.vpc_id
 
@@ -88,23 +85,19 @@ resource "aws_route_table" "private" {
 
 resource "aws_route" "public_internet_gateway" {
   count = local.create_vpc && var.create_igw && length(var.public_subnet_cidrs) > 0 ? 1 : 0
-  # count = var.create_igw && length(var.public_subnet_cidrs) > 0 ? 1 : 0
 
   route_table_id         = aws_route_table.public_subnets[0].id
   destination_cidr_block = var.default_cidr
   gateway_id             = aws_internet_gateway.vpc_gw[0].id
-  # gateway_id             = aws_internet_gateway.vpc_gw.id
 }
 
 # ========  Public Subnets  ========
 resource "aws_subnet" "public_subnets" {
   count = local.create_vpc && length(var.public_subnet_cidrs) > 0 && (false == var.one_nat_gateway_per_az || length(var.public_subnet_cidrs) >= length(var.azs)) ? length(var.public_subnet_cidrs) : 0
-  # count = length(var.public_subnet_cidrs)
 
   vpc_id                  = local.vpc_id
   cidr_block              = element(concat(var.public_subnet_cidrs, [""]), count.index)
   availability_zone       = length(regexall("^[a-z]{2}-", element(var.azs, count.index))) > 0 ? element(var.azs, count.index) : null
-  # availability_zone       = element(var.azs, count.index)
   availability_zone_id    = length(regexall("^[a-z]{2}-", element(var.azs, count.index))) == 0 ? element(var.azs, count.index) : null
   map_public_ip_on_launch = var.map_public_ip_on_launch
 
@@ -124,12 +117,10 @@ resource "aws_subnet" "public_subnets" {
 # ========  Private Subnets  ========
 resource "aws_subnet" "private_subnets" {
   count = local.create_vpc && length(var.public_subnet_cidrs) > 0 ? length(var.public_subnet_cidrs) : 0
-  # count = length(var.private_subnet_cidrs)
 
   vpc_id               = local.vpc_id
   cidr_block           = element(var.private_subnet_cidrs, count.index)
   availability_zone    = length(regexall("^[a-z]{2}-", element(var.azs, count.index))) > 0 ? element(var.azs, count.index) : null
-  # availability_zone    = element(var.azs, count.index)
   availability_zone_id = length(regexall("^[a-z]{2}-", element(var.azs, count.index))) == 0 ? element(var.azs, count.index) : null
  
   tags = merge(
@@ -152,7 +143,6 @@ locals {
 }
 
 resource "aws_eip" "nat" {
-  # count = element(concat(var.public_subnet_cidrs, [""]), count.index)
   count = local.create_vpc && var.enable_nat_gateway && false == var.reuse_nat_ips ? local.nat_gateway_count : 0
 
   vpc = true
@@ -204,7 +194,6 @@ resource "aws_route_table_association" "private" {
 
   subnet_id      = element(aws_subnet.private_subnets[*].id, count.index) 
   route_table_id = element(aws_route_table.private[*].id, var.single_nat_gateway ? 0 : count.index)
-#   route_table_id = element(aws_subnet.private_subnets[*].id, var.single_nat_gateway ? 0 : count.index)
 }
 
 
