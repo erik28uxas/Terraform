@@ -41,7 +41,7 @@ module "vpc" {
 
   # public_subnet_names = "Main Public Subnet"
   name = "Main"
-  
+
   public_subnet_tags = {
     Name = "Main VPC public subnet" 
   }
@@ -86,11 +86,11 @@ module "vpc" {
     Name = "Main VPC IGW"
   }
 
-  nat_eip_tags = {
-    Info = "EIP-in-${local.region}a"
-    Info = "EIP-in-${local.region}b"
-    Info = "EIP-in-${local.region}c"
-  }
+  # nat_eip_tags = {
+  #   Info = "EIP-in-${local.region}a"
+  #   Info = "EIP-in-${local.region}b"
+  #   Info = "EIP-in-${local.region}c"
+  # }
 
   nat_gateway_tags = {
     Info = "NAT-GW-for-${local.region}a"
