@@ -92,12 +92,12 @@ module "vpc" {
   #   Info = "EIP-in-${local.region}c"
   # }
 
-  nat_gateway_tags = {
-    Info = "NAT-GW-for-${local.region}a"
-    Info = "NAT-GW-for-${local.region}b"
-    Info = "NAT-GW-for-${local.region}c"
+  # nat_gateway_tags = {
+  #   Info = "NAT-GW-for-${local.region}a"
+  #   Info = "NAT-GW-for-${local.region}b"
+  #   Info = "NAT-GW-for-${local.region}c"
 
-  }
+  # }
 
   tags = local.tags
 
