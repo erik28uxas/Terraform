@@ -19,10 +19,9 @@ variable "create_igw" {
 }
 
 
-# ====== VPC Vars ======
+# ====== VPC ======
 variable "vpc_cidr" {
   description = "VPC CIDR block"
-  # default     = "10.0.0.0/16"
 }
 
 variable "instance_tenancy" {
@@ -70,7 +69,7 @@ variable "single_nat_gateway" {
   type        = bool
   default     = false
 }
-#############
+
 variable "one_nat_gateway_per_az" {
   description = "Should be true if you want only one NAT Gateway per availability zone. Requires `var.azs` to be set, and the number of `public_subnets` created to be greater than or equal to the number of availability zones specified in `var.azs`."
   type        = bool
@@ -88,7 +87,7 @@ variable "external_nat_ip_ids" {
   type        = list(string)
   default     = []
 }
-##############
+
 variable "nat_gateway_destination_cidr_block" {
   description = "Used to pass a custom destination route for private NAT Gateway. If not specified, the default 0.0.0.0/0 is used as a destination route."
   type        = string
@@ -108,21 +107,18 @@ variable "azs" {
   description = "A list of availability zones names or ids in the region"
   type        = list(string)
   default     = []
-  # default     = ["us-west-2a", "us-west-2b", "us-west-2c"]
 }
 
 variable "public_subnet_cidrs" {
   description = "Public Subnets CIDRs"
   type        = list(string)
   default     = []  
-  # default     = ["10.0.1.0/24", "10.0.2.0/24", "10.0.3.0/24"]
 }
 
 variable "private_subnet_cidrs" {
   description = "Private Subnets CIDRs"
   type        = list(string)
   default     = []
-  # default     = ["10.0.4.0/24", "10.0.5.0/24", "10.0.6.0/24"]
 }
 
 
